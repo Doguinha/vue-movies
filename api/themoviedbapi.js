@@ -12,7 +12,7 @@ const getConfigurationAPI = async () => {
 };
 
 const getTrendingAPI = async (mediaType = "movie", timeWindow = "day") => {
-  let movies = fetch(
+  let trending = fetch(
     `${API_URL}/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&language=${LANGUAGE}`
   )
     .then((resp) => resp.json())
@@ -20,7 +20,7 @@ const getTrendingAPI = async (mediaType = "movie", timeWindow = "day") => {
     .catch((error) => {
       console.error("Erro ao fazer a requisição", error);
     });
-  return movies;
+  return trending;
 };
 
 const getSearchedMoviesAPI = async (query) => {

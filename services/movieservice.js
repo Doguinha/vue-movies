@@ -24,9 +24,14 @@ const getResultWithImage = async (data) => {
   const results = data.map((item) => {
     const result = {
       ...item,
-      url_image: item.poster_path
+      img_url: item.poster_path
         ? `${config.images.secure_base_url}${
             config.images.poster_sizes.filter((size) => size === "w185")[0]
+          }/${item.poster_path}`
+        : "",
+      min_img_url: item.poster_path
+        ? `${config.images.secure_base_url}${
+            config.images.logo_sizes.filter((size) => size === "w45")[0]
           }/${item.poster_path}`
         : "",
     };

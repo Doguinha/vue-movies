@@ -2,7 +2,7 @@ var app = new Vue({
   el: "#app",
   data: {
     movies: [],
-    cartitens: [],
+    cartItens: [],
   },
   methods: {
     async searchMovies(textSearch) {
@@ -10,15 +10,15 @@ var app = new Vue({
     },
     addToCart(item) {
       if (
-        this.cartitens.filter((cartItem) => cartItem.item.id === item.id)
+        this.cartItens.filter((cartItem) => cartItem.item.id === item.id)
           .length === 0
       ) {
-        this.cartitens.push({
+        this.cartItens.push({
           quantity: 1,
           item: item,
         });
       } else {
-        this.cartitens = this.cartitens.map((cartItem) => {
+        this.cartItens = this.cartItens.map((cartItem) => {
           if (cartItem.item.id === item.id) {
             const cartItemResul = {
               ...cartItem,

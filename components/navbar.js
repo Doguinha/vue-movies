@@ -2,13 +2,8 @@ Vue.component("v-navbar", {
   data() {
     return {
       textSearch: "",
+      sharedState: store.state,
     };
-  },
-  props: {
-    cartItens: {
-      type: Array,
-      required: false,
-    },
   },
   template: `
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -29,7 +24,7 @@ Vue.component("v-navbar", {
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <v-cart-counter v-bind:cart-itens='cartItens'></v-cart-counter>         
+                <v-cart-counter></v-cart-counter>         
                 <form class="d-flex" v-on:submit.prevent='onSubmit'>
                     <input v-model='textSearch' required class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -38,9 +33,8 @@ Vue.component("v-navbar", {
         </div>
     </nav>`,
   methods: {
-    onSubmit() {
-      console.log("emitindo o evento no navbar", this.textSearch);
-      this.$emit("search-movie", this.textSearch);
+    async onSubmit() {
+      store.setMovies(await getSearchedMovies(this.textSearch));
     },
   },
 });

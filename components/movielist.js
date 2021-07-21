@@ -2,18 +2,21 @@ Vue.component("v-movie-list", {
   data() {
     return {
       textSearch: "",
-      sharedState: store.state,
     };
+  },
+  computed: {
+    cartItens() {
+      return store.state.cartItens;
+    },
+    movies() {
+      return store.state.movies;
+    },
   },
   methods: {
     addToCart(item) {
-      if (
-        !this.sharedState.cartItens.some(
-          (cartItem) => cartItem.item.id === item.id
-        )
-      ) {
+      if (!this.cartItens.some((cartItem) => cartItem.item.id === item.id)) {
         const newCartItems = [
-          ...this.sharedState.cartItens,
+          ...this.cartItens,
           {
             quantity: 1,
             item: item,
@@ -21,7 +24,7 @@ Vue.component("v-movie-list", {
         ];
         store.setCartItens(newCartItems);
       } else {
-        const newCartItems = this.sharedState.cartItens.map((cartItem) => {
+        const newCartItems = this.cartItens.map((cartItem) => {
           if (cartItem.item.id === item.id) {
             const cartItemResul = {
               ...cartItem,
@@ -37,7 +40,7 @@ Vue.component("v-movie-list", {
   },
   template: `
     <div class='row mb-3 text-center'>
-      <div class='col-md-4 col-sm-6 col-xs-12' v-for='movie in sharedState.movies' v-bind:key='movie.id'> 
+      <div class='col-md-4 col-sm-6 col-xs-12' v-for='movie in movies' v-bind:key='movie.id'> 
         <div class="card mb-4 rounded-3 shadow-sm">
           <div class="card-header py-3">
             <h4 class="my-0 fw-normal">{{movie.original_title}}</h4>

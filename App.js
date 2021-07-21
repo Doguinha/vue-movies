@@ -16,6 +16,9 @@ var store = {
 
 var app = new Vue({
   el: "#app",
+  data: {
+    sharedState: store.state,
+  },
   async created() {
     store.setMovies(await getTrending());
   },

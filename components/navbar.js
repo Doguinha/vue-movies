@@ -2,7 +2,6 @@ Vue.component("v-navbar", {
   data() {
     return {
       textSearch: "",
-      sharedState: store.state,
     };
   },
   template: `

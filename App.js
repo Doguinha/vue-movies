@@ -1,24 +1,26 @@
-var app = new Vue({
-  el: "#app",
-  data: {
+const store = new Vuex.Store({
+  state: {
     movies: [],
     cartItens: [],
   },
-  methods: {
+  mutations: {
     async searchMovies(textSearch) {
-      this.movies = await getSearchedMovies(textSearch);
+      state.movies = await getSearchedMovies(textSearch);
+    },
+    async setTrending() {
+      state.movies = await getTrending(textSearch);
     },
     addToCart(item) {
       if (
-        this.cartItens.filter((cartItem) => cartItem.item.id === item.id)
+        state.cartItens.filter((cartItem) => cartItem.item.id === item.id)
           .length === 0
       ) {
-        this.cartItens.push({
+        state.cartItens.push({
           quantity: 1,
           item: item,
         });
       } else {
-        this.cartItens = this.cartItens.map((cartItem) => {
+        state.cartItens = this.cartItens.map((cartItem) => {
           if (cartItem.item.id === item.id) {
             const cartItemResul = {
               ...cartItem,
@@ -31,7 +33,19 @@ var app = new Vue({
       }
     },
   },
+});
+
+var app = new Vue({
+  el: "#app",
+  methods: {
+    async searchMovies(textSearch) {
+      store.commit("searchMovies", await getSearchedMovies(textSearch));
+    },
+    addToCart(item) {
+      store.commit("addToCart", item);
+    },
+  },
   async created() {
-    this.movies = await getTrending();
+    store.commit("setTrending");
   },
 });

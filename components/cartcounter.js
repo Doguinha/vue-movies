@@ -1,9 +1,5 @@
 Vue.component("v-cart-counter", {
-  computed: {
-    cartItens() {
-      return this.$store.state.cartItens;
-    },
-  },
+  computed: Vuex.mapState(["cartItens"]),
   template: `
     <div class="dropdown cart-counter">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

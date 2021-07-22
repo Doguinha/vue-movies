@@ -1,9 +1,5 @@
 Vue.component("v-movie-list", {
-  computed: {
-    movies() {
-      return this.$store.state.movies;
-    },
-  },
+  computed: Vuex.mapState(["movies"]),
   methods: {
     addToCart(movie) {
       this.$store.commit("addToCart", movie);

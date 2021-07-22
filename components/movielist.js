@@ -1,13 +1,12 @@
 Vue.component("v-movie-list", {
-  props: {
-    movies: {
-      type: Array,
-      required: true,
+  computed: {
+    movies() {
+      return this.$store.state.movies;
     },
   },
   methods: {
     addToCart(movie) {
-      this.$emit("add-to-cart", movie);
+      this.$store.commit("addToCart", movie);
     },
   },
   template: `

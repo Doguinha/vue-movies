@@ -1,8 +1,7 @@
 Vue.component("v-cart-counter", {
-  props: {
-    cartItens: {
-      type: Array,
-      required: false,
+  computed: {
+    cartItens() {
+      return this.$store.state.cartItens;
     },
   },
   template: `
@@ -11,7 +10,7 @@ Vue.component("v-cart-counter", {
         Cart <span class="badge bg-primary">{{this.cartItens ? this.cartItens.length : 0}}</span>
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li v-for='(cartItem,index) in cartItens' v-bind:key='cartItem.item.id'>
+            <li v-for='(cartItem,index) in this.cartItens' v-bind:key='cartItem.item.id'>
                 <a class="dropdown-item" href="#">
                     <img class='img-fluid' v-bind:src='cartItem.item.min_img_url'/>({{cartItem.quantity}}){{cartItem.item.original_title}}
                 </a>

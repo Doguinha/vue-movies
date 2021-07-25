@@ -4,6 +4,10 @@ Vue.component("v-navbar", {
       textSearch: "",
     };
   },
+  methods: {
+    // permite invocar this.searchMovies do store ao invés de this.$store.dispatch("searchMovies", textSearch);
+    ...Vuex.mapActions(["searchMovies"]),
+  },
   template: `
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="container-fluid">
@@ -24,16 +28,11 @@ Vue.component("v-navbar", {
                     </li>
                 </ul>
                 <v-cart-counter></v-cart-counter>         
-                <form class="d-flex" v-on:submit.prevent='onSubmit'>
+                <form class="d-flex" v-on:submit.prevent='searchMovies(textSearch)'>
                     <input v-model='textSearch' required class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>`,
-  methods: {
-    async onSubmit() {
-      this.$store.commit("searchMovies", this.textSearch);
-    },
-  },
 });

@@ -1,9 +1,10 @@
 Vue.component("v-movie-list", {
+  // permite acessar com this.movies ao invés de this.$store.state.movies
   computed: Vuex.mapState(["movies"]),
+
   methods: {
-    addToCart(movie) {
-      this.$store.commit("addToCart", movie);
-    },
+    // permite invocar this.addCart do store ao invés de this.$store.dispatch("addToCart", movie);
+    ...Vuex.mapActions(["addToCart"]),
   },
   template: `
     <div class='row mb-3 text-center'>

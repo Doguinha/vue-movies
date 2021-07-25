@@ -1,26 +1,21 @@
 const store = new Vuex.Store({
   state: {
     movies: [],
-    cartItens: [],
+    cartItems: [],
   },
   mutations: {
-    async searchMovies(state, textSearch) {
-      state.movies = await getSearchedMovies(textSearch);
-    },
-    async setTrending(state) {
-      state.movies = await getTrending();
+    //sempre sincronas e acessadas apenas pelas actions
+    setMovies(state, movies) {
+      state.movies = movies;
     },
     addToCart(state, item) {
-      if (
-        state.cartItens.filter((cartItem) => cartItem.item.id === item.id)
-          .length === 0
-      ) {
-        state.cartItens.push({
+      if (!state.cartItems.some((cartItem) => cartItem.item.id === item.id)) {
+        state.cartItems.push({
           quantity: 1,
           item: item,
         });
       } else {
-        state.cartItens = state.cartItens.map((cartItem) => {
+        state.cartItems = state.cartItems.map((cartItem) => {
           if (cartItem.item.id === item.id) {
             const cartItemResul = {
               ...cartItem,
@@ -33,12 +28,36 @@ const store = new Vuex.Store({
       }
     },
   },
+  actions: {
+    async searchMovies(context, textSearch) {
+      const movies = await getSearchedMovies(textSearch);
+      context.commit("setMovies", movies);
+    },
+    async setTrending(context) {
+      const movies = await getTrending();
+      context.commit("setMovies", movies);
+    },
+    addToCart(context, movie) {
+      context.commit("addToCart", movie);
+    },
+  },
+  getters: {
+    cartItemsCount(state) {
+      return state.cartItems.length;
+    },
+    cartItemById: (state) => (itemId) => {
+      return state.cartItems.find((cartItem) => cartItem.item.id === itemId);
+    },
+    exemploRecebendoGettersParametro(state, getters) {
+      return getters.cartItemsCount > 0 ? "Has Items" : "Empty";
+    },
+  },
 });
 
 var app = new Vue({
   el: "#app",
   store,
   async created() {
-    store.commit("setTrending");
+    this.$store.dispatch("setTrending");
   },
 });

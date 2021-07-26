@@ -1,17 +1,11 @@
 Vue.component("v-cart-counter", {
   computed: {
     // permite acessar com this.cartItems ao invés de this.$store.state.cartItems
-    ...Vuex.mapState(["cartItems"]),
-    ...Vuex.mapState({
-      // permite renomear this.cartItems para this.renomeandoCartItems
-      renomeandoCartItems: "cartItems",
+    ...Vuex.mapState("cart", {
+      cartItems: (state) => state.cartItems,
     }),
     // permite invocar com this.cartItemsCount ao invés de this.$store.getters.cartItemsCount
-    ...Vuex.mapGetters(["cartItemsCount"]),
-    ...Vuex.mapGetters({
-      // permite renomear this.exemploRecebendoGettersParametro para this.parametroEmGetters
-      parametroEmGetters: "exemploRecebendoGettersParametro",
-    }),
+    ...Vuex.mapGetters("cart", ["cartItemsCount"]),
   },
   template: `
     <div class="dropdown cart-counter">
@@ -20,8 +14,7 @@ Vue.component("v-cart-counter", {
             data-bs-toggle="dropdown" aria-expanded="false">
             Cart 
             <span class="badge bg-primary">
-                {{this.cartItemsCount}} -
-                {{this.parametroEmGetters}}
+                {{this.cartItemsCount}}
             </span>
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">

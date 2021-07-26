@@ -6,7 +6,7 @@ Vue.component("v-navbar", {
   },
   methods: {
     // permite invocar this.searchMovies do store ao invés de this.$store.dispatch("searchMovies", textSearch);
-    ...Vuex.mapActions(["searchMovies"]),
+    ...Vuex.mapActions("movie", ["searchMovies"]),
   },
   template: `
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">

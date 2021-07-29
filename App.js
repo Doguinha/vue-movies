@@ -1,25 +1,9 @@
-var store = {
-  debug: true,
-  state: {
-    movies: [],
-    cartItens: [],
-  },
-  setMovies(newValue) {
-    if (this.debug) console.log("setMoviesAction triggered with", newValue);
-    this.state.movies = newValue;
-  },
-  setCartItens(newValue) {
-    if (this.debug) console.log("setCartItensAction triggered", newValue);
-    this.state.cartItens = newValue;
-  },
-};
-
 var app = new Vue({
   el: "#app",
   data: {
     sharedState: store.state,
   },
-  async created() {
+  async mounted() {
     store.setMovies(await getTrending());
   },
 });

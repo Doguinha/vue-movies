@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Movies</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-app-bar app></v-app-bar>
+        <v-main>
+          <v-container>
+            <h2 class="text-h4">Align Self</h2>
+            <v-card
+              class="d-flex flex-wrap mb-6"
+              color="grey lighten-2"
+              flat
+              tile
+              height="100"
+            >
+              <v-card
+                v-for="n in 3"
+                :key="n"
+                class="pa-2"
+                :class="[n === 2 && `align-self-center flex-grow-1`]"
+                outlined
+                tile
+              >
+                {{n === 2 ? 'align-center' : 'align-start '}}
+              </v-card>
+            </v-card>
+            <h2 class="text-h4">Flex Wrap</h2>
+            <v-card
+              class="d-flex flex-wrap"
+              color="grey lighten-2 mb-6"
+              flat
+              tile
+            >
+              <v-card v-for="n in 20" :key="n" class="pa-2" outlined tile>
+                Flex item {{ n }}
+              </v-card>
+            </v-card>
+            <h2 class="text-h4">Flex grow and shrink</h2>
+            <v-row no-gutters style="flex-wrap: nowrap">
+              <v-col cols="2" class="flex-grow-0 flex-shrink-0">
+                <v-card class="pa-2" outlined tile> I'm 2 column wide </v-card>
+              </v-col>
+              <v-col
+                cols="1"
+                style="min-width: 100px; max-width: 100%"
+                class="flex-grow-1 flex-shrink-0"
+              >
+                <v-card class="pa-2" outlined tile>
+                  I'm 1 column wide and I grow to take all the space
+                </v-card>
+              </v-col>
+              <v-col
+                cols="5"
+                style="min-width: 100px"
+                class="flex-grow-0 flex-shrink-1"
+              >
+                <v-card class="pa-2" outlined tile>
+                  I'm 5 column wide and I shrink if there's not enough space
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-main>
+      </v-app>
+      <!-- <v-navbar></v-navbar>
+      <main class="container py-3">
+        <v-movie-list></v-movie-list>
+      </main> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="./api/themoviedbapi.js"></script>
+    <script src="./services/movieservice.js"></script>
+    <script src="./components/cartcounter.js"></script>
+    <script src="./components/navbar.js"></script>
+    <script src="./components/movielist.js"></script>
+    <script src="./store/index.js"></script>
+    <script src="./App.js"></script>
+  </body>
+</html>

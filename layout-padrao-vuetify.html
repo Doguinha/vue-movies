@@ -26,13 +26,34 @@
   </head>
   <body>
     <v-app id="app">
-      <vuetify-navbar></vuetify-navbar>
+      <v-system-bar app> v-system-bar </v-system-bar>
+      <v-navigation-drawer app> v-navigation-drawer </v-navigation-drawer>
+      <v-app-bar app> v-app-bar </v-app-bar>
+
+      <!-- Sizes your content based upon application components -->
+      <v-main>
+        <!-- Provides the application the proper gutter -->
+        <v-container fluid>
+          <p class="text-center">v-container inside v-main</p>
+          <!-- If using vue-router -->
+          <!-- <router-view></router-view> -->
+        </v-container>
+      </v-main>
+
+      <v-footer app> v-footer </v-footer>
+      <v-bottom-navigation app>v-bottom-navigation</v-bottom-navigation>
     </v-app>
+    <!-- <v-navbar></v-navbar>
+      <main class="container py-3">
+        <v-movie-list></v-movie-list>
+      </main> -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="./api/themoviedbapi.js"></script>
     <script src="./services/movieservice.js"></script>
-    <script src="./vuetify-components/navbar.js"></script>
+    <script src="./components/cartcounter.js"></script>
+    <script src="./components/navbar.js"></script>
+    <script src="./components/movielist.js"></script>
     <script src="./store/index.js"></script>
     <script src="./App.js"></script>
   </body>

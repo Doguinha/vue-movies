@@ -24,6 +24,6 @@ var app = new Vue({
     sharedState: store.state,
   },
   async mounted() {
-    // store.setMovies(await getTrending());
+    store.setMovies(await getTrending());
   },
 });

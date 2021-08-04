@@ -20,22 +20,26 @@ const getConfiguration = async () => {
 };
 
 const getResultWithImage = async (data) => {
-  let config = await getConfiguration();
+  let pathBase = await getPathImageBase("w500");
+  let pathBase2 = await getPathImageBase("w45");
   const results = data.map((item) => {
     const result = {
       ...item,
       img_url: item.poster_path
-        ? `${config.images.secure_base_url}${
-            config.images.poster_sizes.filter((size) => size === "w185")[0]
-          }/${item.poster_path}`
-        : "",
+        ? `${pathBase}${item.poster_path}`
+        : `${pathBase}${item.profile_path}`,
       min_img_url: item.poster_path
-        ? `${config.images.secure_base_url}${
-            config.images.logo_sizes.filter((size) => size === "w45")[0]
-          }/${item.poster_path}`
-        : "",
+        ? `${pathBase2}${item.poster_path}`
+        : `${pathBase2}${item.profile_path}`,
     };
     return result;
   });
   return results;
+};
+
+const getPathImageBase = async (width) => {
+  let config = await getConfiguration();
+  return `${config.images.secure_base_url}${
+    config.images.poster_sizes.filter((size) => size === width)[0]
+  }`;
 };

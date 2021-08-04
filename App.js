@@ -23,7 +23,4 @@ var app = new Vue({
   data: {
     sharedState: store.state,
   },
-  async mounted() {
-    store.setMovies(await getTrending());
-  },
 });

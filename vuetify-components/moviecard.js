@@ -22,7 +22,7 @@ Vue.component("vuetify-moviecard", {
         v-bind:src='movie.img_url'>
     </v-img>
 
-    <v-card-title>{{movie.original_title}}</v-card-title>
+    <v-card-title>{{movie.original_title ? movie.original_title : movie.name}}</v-card-title>
 
     <v-card-text>
         <v-row
@@ -45,7 +45,7 @@ Vue.component("vuetify-moviecard", {
             Linguagem: {{movie.original_language}}
         </div>
 
-        <div>Lançado em: {{movie.release_date}}</div>
+        <div>Lançado em: {{movie.release_date ? movie.release_date : movie.first_air_date}}</div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>

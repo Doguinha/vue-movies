@@ -13,7 +13,20 @@ Vue.component("vuetify-navbar", {
   },
   methods: {
     async onSearch() {
-      this.movies = await getSearchedMovies(this.textSearch);
+      switch (this.tab) {
+        case 1: {
+          this.tvs = await getSearched(this.textSearch, "tv");
+          return;
+        }
+        case 2: {
+          this.persons = await getSearched(this.textSearch, "person");
+          return;
+        }
+        default: {
+          this.movies = await getSearched(this.textSearch, "movie");
+          return;
+        }
+      }
     },
     async onGetTrending(mediaType) {
       switch (mediaType) {
@@ -67,43 +80,13 @@ Vue.component("vuetify-navbar", {
 
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <v-container fluid>
-          <v-row>
-            <v-col
-              cols="12"
-              md="3"
-              v-for='movie in movies' 
-              v-bind:key='movie.id'>
-                <vuetify-moviecard v-bind:movie='movie'></vuetify-moviecard>
-            </v-col>    
-          </v-row>  
-        </v-container>
+        <vuetify-content-tabitem v-bind:data='movies'></vuetify-content-tabitem>
       </v-tab-item>
       <v-tab-item>
-        <v-container fluid>
-            <v-row>
-              <v-col
-                cols="12"
-                md="3"
-                v-for='tv in tvs' 
-                v-bind:key='tv.id'>
-                  <vuetify-moviecard v-bind:movie='tv'></vuetify-moviecard>
-              </v-col>    
-            </v-row>  
-          </v-container>
+        <vuetify-content-tabitem v-bind:data='tvs'></vuetify-content-tabitem>
       </v-tab-item>
       <v-tab-item>
-        <v-container fluid>
-          <v-row>
-            <v-col
-              cols="12"
-              md="3"
-              v-for='person in persons' 
-              v-bind:key='person.id'>
-                <vuetify-moviecard v-bind:movie='person'></vuetify-moviecard>
-            </v-col>    
-          </v-row>  
-        </v-container>
+        <vuetify-content-tabitem v-bind:data='persons'></vuetify-content-tabitem>
       </v-tab-item>
     </v-tabs-items>
   </v-card>

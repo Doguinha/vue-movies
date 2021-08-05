@@ -1,5 +1,5 @@
-const getSearchedMovies = async (textSearch) => {
-  let movies = await getSearchedMoviesAPI(textSearch);
+const getSearched = async (textSearch, media = "movie") => {
+  let movies = await getSearchedAPI(textSearch, media);
   return getResultWithImage(movies);
 };
 
@@ -20,17 +20,17 @@ const getConfiguration = async () => {
 };
 
 const getResultWithImage = async (data) => {
-  let pathBase = await getPathImageBase("w500");
-  let pathBase2 = await getPathImageBase("w45");
+  let pathBaseImg = await getPathImageBase("w500");
+  let pathBaseImgMin = await getPathImageBase("w45");
   const results = data.map((item) => {
     const result = {
       ...item,
       img_url: item.poster_path
-        ? `${pathBase}${item.poster_path}`
-        : `${pathBase}${item.profile_path}`,
+        ? `${pathBaseImg}${item.poster_path}`
+        : `${pathBaseImg}${item.profile_path}`,
       min_img_url: item.poster_path
-        ? `${pathBase2}${item.poster_path}`
-        : `${pathBase2}${item.profile_path}`,
+        ? `${pathBaseImgMin}${item.poster_path}`
+        : `${pathBaseImgMin}${item.profile_path}`,
     };
     return result;
   });

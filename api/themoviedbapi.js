@@ -23,9 +23,9 @@ const getTrendingAPI = async (mediaType = "movie", timeWindow = "day") => {
   return trending;
 };
 
-const getSearchedMoviesAPI = async (query) => {
+const getSearchedAPI = async (query, media) => {
   let movies = fetch(
-    `${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=${LANGUAGE}`
+    `${API_URL}/search/${media}?api_key=${API_KEY}&query=${query}&language=${LANGUAGE}`
   )
     .then((resp) => resp.json())
     .then((data) => data.results)

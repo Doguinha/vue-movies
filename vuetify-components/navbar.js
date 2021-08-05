@@ -13,18 +13,20 @@ Vue.component("vuetify-navbar", {
   },
   methods: {
     async onSearch() {
-      switch (this.tab) {
-        case 1: {
-          this.tvs = await getSearched(this.textSearch, "tv");
-          return;
-        }
-        case 2: {
-          this.persons = await getSearched(this.textSearch, "person");
-          return;
-        }
-        default: {
-          this.movies = await getSearched(this.textSearch, "movie");
-          return;
+      if (this.textSearch) {
+        switch (this.tab) {
+          case 1: {
+            this.tvs = await getSearched(this.textSearch, "tv");
+            return;
+          }
+          case 2: {
+            this.persons = await getSearched(this.textSearch, "person");
+            return;
+          }
+          default: {
+            this.movies = await getSearched(this.textSearch, "movie");
+            return;
+          }
         }
       }
     },
@@ -50,21 +52,20 @@ Vue.component("vuetify-navbar", {
     <v-toolbar dark>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Vue Movies</v-toolbar-title>
-      <v-form v-on:submit.prevent='onSearch'>
-        <v-text-field
-          v-model='textSearch'
-          append-icon="mdi-microphone"
-          class="mx-16"
-          flat
-          hide-details
-          label="Pesquisar"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted>
-        </v-text-field>
-      </v-form/>
+      <v-text-field
+        type="text"
+        v-model='textSearch'
+        class="mx-16"
+        flat
+        hide-details
+        label="Pesquisar"
+        solo-inverted
+        append-icon="mdi-magnify"
+        v-on:click:append="onSearch">
+      </v-text-field>
+      
       <template v-slot:extension>
-        <v-tabs v-model="tab"
-          align-with-title>
+        <v-tabs v-model="tab" align-with-title>
           <v-tab v-on:click='onGetTrending("movie")'>
             Films
           </v-tab>

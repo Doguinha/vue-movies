@@ -2,7 +2,6 @@ Vue.component("vuetify-navbar", {
   data() {
     return {
       textSearch: "",
-      tab: null,
       movies: [],
       tvs: [],
       persons: [],
@@ -31,17 +30,17 @@ Vue.component("vuetify-navbar", {
       }
     },
     async onGetTrending(mediaType) {
-      switch (mediaType) {
-        case "tv": {
-          this.tvs = await getTrending(mediaType);
+      switch (this.tab) {
+        case 1: {
+          this.tvs = await getTrending((mediaType = "tv"));
           return;
         }
-        case "person": {
-          this.persons = await getTrending(mediaType);
+        case 2: {
+          this.persons = await getTrending((mediaType = "person"));
           return;
         }
         default: {
-          this.movies = await getTrending(mediaType);
+          this.movies = await getTrending((mediaType = "movie"));
           return;
         }
       }
@@ -56,40 +55,14 @@ Vue.component("vuetify-navbar", {
         type="text"
         v-model='textSearch'
         class="mx-16"
-        flat
+        dense
         hide-details
         label="Pesquisar"
         solo-inverted
         append-icon="mdi-magnify"
         v-on:click:append="onSearch">
       </v-text-field>
-      
-      <template v-slot:extension>
-        <v-tabs v-model="tab" align-with-title>
-          <v-tab v-on:click='onGetTrending("movie")'>
-            Films
-          </v-tab>
-          <v-tab v-on:click='onGetTrending("tv")'>
-            Tv Series
-          </v-tab>
-          <v-tab v-on:click='onGetTrending("person")'>
-            Actors
-          </v-tab>
-        </v-tabs>
-      </template>
     </v-toolbar>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item>
-        <vuetify-content-tabitem v-bind:data='movies'></vuetify-content-tabitem>
-      </v-tab-item>
-      <v-tab-item>
-        <vuetify-content-tabitem v-bind:data='tvs'></vuetify-content-tabitem>
-      </v-tab-item>
-      <v-tab-item>
-        <vuetify-content-tabitem v-bind:data='persons'></vuetify-content-tabitem>
-      </v-tab-item>
-    </v-tabs-items>
   </v-card>
   `,
 });

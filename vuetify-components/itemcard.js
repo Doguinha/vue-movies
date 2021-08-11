@@ -5,8 +5,39 @@ Vue.component("vuetify-itemcard", {
       required: true,
     },
   },
+  computed: {
+    cartItens() {
+      return store.state.cartItens;
+    },
+  },
+  methods: {
+    addToCart(item) {
+      if (!this.cartItens.some((cartItem) => cartItem.item.id === item.id)) {
+        const newCartItems = [
+          ...this.cartItens,
+          {
+            quantity: 1,
+            item: item,
+          },
+        ];
+        store.setCartItens(newCartItems);
+      } else {
+        const newCartItems = this.cartItens.map((cartItem) => {
+          if (cartItem.item.id === item.id) {
+            const cartItemResul = {
+              ...cartItem,
+              quantity: cartItem.quantity + 1,
+            };
+            return cartItemResul;
+          }
+          return cartItem;
+        });
+        store.setCartItens(newCartItems);
+      }
+    },
+  },
   template: `
-  <v-card class="mx-4">
+  <v-card class="mx-2" max-width='250'>
     <v-img width="250" v-bind:src='item.img_url'></v-img>
     <v-card-title>{{item.original_title ? item.original_title : item.name}}</v-card-title>
     <v-card-text>
@@ -29,8 +60,8 @@ Vue.component("vuetify-itemcard", {
     </v-card-text>
     <v-divider class="mx-4"></v-divider>
     <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text>
-            Reserve
+        <v-btn color="deep-purple lighten-2" outlined v-on:click='addToCart(item)'>
+            Add to Cart
         </v-btn>
     </v-card-actions>
    </v-card>

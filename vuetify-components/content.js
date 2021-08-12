@@ -1,27 +1,16 @@
 Vue.component("vuetify-content", {
-  data() {
-    return {
-      movies: [],
-      tvs: [],
-      persons: [],
-    };
-  },
-  async mounted() {
-    this.movies = await getTrending();
-    this.tvs = await getTrending((mediaType = "tv"));
-    this.persons = await getTrending((mediaType = "person"));
-  },
-  methods: {
-    async onSearch() {
-      console.log("submit");
-      this.tvs = await getSearched(this.textSearch, "tv");
-      this.persons = await getSearched(this.textSearch, "person");
-      this.movies = await getSearched(this.textSearch, "movie");
+  computed: {
+    cartItens() {
+      return store.state.cartItens;
     },
-    async onGetTrending(mediaType) {
-      this.tvs = await getTrending((mediaType = "tv"));
-      this.persons = await getTrending((mediaType = "person"));
-      this.movies = await getTrending((mediaType = "movie"));
+    movies() {
+      return store.state.movies;
+    },
+    persons() {
+      return store.state.persons;
+    },
+    tvs() {
+      return store.state.tvs;
     },
   },
   template: `

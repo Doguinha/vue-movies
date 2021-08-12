@@ -23,4 +23,9 @@ var app = new Vue({
   data: {
     sharedState: store.state,
   },
+  async mounted() {
+    store.setMovies(await getTrending());
+    store.setTvs(await getTrending((mediaType = "tv")));
+    store.setPersons(await getTrending((mediaType = "person")));
+  },
 });

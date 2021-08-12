@@ -28,15 +28,27 @@
     <v-app id="app">
       <vuetify-navbar></vuetify-navbar>
       <vuetify-content></vuetify-content>
+      <v-card class="d-flex justify-center">
+        <v-alert
+          type="warning"
+          dismissible
+          outlined
+          dense
+          style="position: fixed; top: 75px"
+        >
+          <strong>Nenhum resultado encontrado</strong>
+        </v-alert>
+      </v-card>
+    </v-card>
     </v-app>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="./api/themoviedbapi.js"></script>
     <script src="./services/movieservice.js"></script>
+    <script src="./store/index.js"></script>
     <script src="./vuetify-components/itemcard.js"></script>
     <script src="./vuetify-components/content.js"></script>
     <script src="./vuetify-components/navbar.js"></script>
-    <script src="./store/index.js"></script>
     <script src="./App.js"></script>
   </body>
 </html>

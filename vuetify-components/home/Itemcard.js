@@ -1,4 +1,4 @@
-Vue.component("vuetify-itemcard", {
+Vue.component("home-itemcard", {
   props: {
     item: {
       type: Object,

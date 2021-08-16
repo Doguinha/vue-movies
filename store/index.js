@@ -5,6 +5,8 @@ var store = {
     movies: [],
     tvs: [],
     persons: [],
+    pages: ["home", "shoppingcart"],
+    page: "home",
   },
   setMovies(newValue) {
     if (this.debug) console.log("setMovies triggered with", newValue);
@@ -21,5 +23,9 @@ var store = {
   setCartItens(newValue) {
     if (this.debug) console.log("setCartItensAction triggered", newValue);
     this.state.cartItens = newValue;
+  },
+  setPage(newValue) {
+    if (this.debug) console.log("setPage triggered", newValue);
+    this.state.page = newValue;
   },
 };

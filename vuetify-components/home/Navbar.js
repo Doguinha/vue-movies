@@ -1,4 +1,4 @@
-Vue.component("vuetify-navbar", {
+Vue.component("home-navbar", {
   data() {
     return {
       textSearch: "",
@@ -32,15 +32,14 @@ Vue.component("vuetify-navbar", {
     },
   },
   template: `
-  <v-card>
+  <div>
     <v-toolbar dark>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title class='d-none d-sm-flex'>Vue Movies</v-toolbar-title>
-      <v-form v-on:submit.prevent="onSearch" class='flex-grow-1 justify-center'>  
+      <v-form v-on:submit.prevent="onSearch" class='flex-grow-1 justify-center mx-sm-16 mx-2'>  
         <v-text-field
           type="text"
           v-model='textSearch'
-          class="mx-sm-16 mx-2"
           dense
           hide-details
           label="Pesquisar"
@@ -49,16 +48,15 @@ Vue.component("vuetify-navbar", {
           v-on:click:append="onSearch">
         </v-text-field>
       </v-form>
-      <v-badge
-        overlap
-        bottom
-        offset-x="30"
-        offset-y="18"
-        v-bind:content="cartItensCount">
-        <v-btn>
+      <v-badge overlap bottom offset-x="30" offset-y="18" v-bind:content="cartItensCount">
+        <v-btn v-on:click='store.setPage('shoppingcart')'>
           <v-icon>mdi-shopping</v-icon>
         </v-btn>
       </v-badge>
     </v-toolbar>
+    <vuetify-alert v-bind:show='notFound' level='warning'>
+      <strong>Nenhum resultado encontrado</strong>
+    </vuetify-alert>
+  </div>
   `,
 });

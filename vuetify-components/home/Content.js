@@ -1,4 +1,4 @@
-Vue.component("vuetify-content", {
+Vue.component("home-content", {
   computed: {
     cartItens() {
       return store.state.cartItens;

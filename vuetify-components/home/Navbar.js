@@ -49,7 +49,7 @@ Vue.component("home-navbar", {
         </v-text-field>
       </v-form>
       <v-badge overlap bottom offset-x="30" offset-y="18" v-bind:content="cartItensCount">
-        <v-btn v-on:click='store.setPage('shoppingcart')'>
+        <v-btn v-on:click="this.store.setPage('shoppingcart')">
           <v-icon>mdi-shopping</v-icon>
         </v-btn>
       </v-badge>

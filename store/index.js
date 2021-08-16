@@ -5,6 +5,7 @@ var store = {
     movies: [],
     tvs: [],
     persons: [],
+    user: {},
     pages: ["home", "shoppingcart"],
     page: "home",
   },

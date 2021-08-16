@@ -23,9 +23,9 @@ var app = new Vue({
   data: {
     sharedState: store.state,
   },
-  async mounted() {
-    store.setMovies(await getTrending());
-    store.setTvs(await getTrending((mediaType = "tv")));
-    store.setPersons(await getTrending((mediaType = "person")));
-  },
+  template: `<v-app>
+      <home-navbar v-if="sharedState.page === 'home'"></home-navbar>
+      <home-content v-if="sharedState.page === 'home'"></home-content>
+      <shoppingcart-content v-if="sharedState.page === 'shoppingcart'"></shoppingcart-content>
+    </v-app>`,
 });

@@ -21,7 +21,7 @@ const getConfiguration = async () => {
 
 const getResultWithImage = async (data) => {
   let pathBaseImg = await getPathImageBase("w500");
-  let pathBaseImgMin = await getPathImageBase("w45");
+  let pathBaseImgMin = await getPathImageBase("w185");
   const results = data.map((item) => {
     const result = {
       ...item,
@@ -40,6 +40,6 @@ const getResultWithImage = async (data) => {
 const getPathImageBase = async (width) => {
   let config = await getConfiguration();
   return `${config.images.secure_base_url}${
-    config.images.poster_sizes.filter((size) => size === width)[0]
+    config.images.logo_sizes.filter((size) => size === width)[0]
   }`;
 };

@@ -25,13 +25,7 @@
     />
   </head>
   <body>
-    <v-app id="app">
-      <home-navbar v-if="store.state.page === 'home'"></home-navbar>
-      <home-content v-if="store.state.page === 'home'"></home-content>
-      <shoppingcart-content
-        v-if="store.state.page === 'shoppingcart'"
-      ></shoppingcart-content>
-    </v-app>
+    <div id="app"></div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="./api/themoviedbapi.js"></script>

@@ -16,7 +16,7 @@ Vue.component("home-itemcard", {
         const newCartItems = [
           ...this.cartItens,
           {
-            quantity: 1,
+            amount: 1,
             item: item,
           },
         ];
@@ -26,7 +26,7 @@ Vue.component("home-itemcard", {
           if (cartItem.item.id === item.id) {
             const cartItemResul = {
               ...cartItem,
-              quantity: cartItem.quantity + 1,
+              amount: cartItem.amount + 0,
             };
             return cartItemResul;
           }

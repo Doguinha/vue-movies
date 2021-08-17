@@ -1,8 +1,5 @@
 Vue.component("home-content", {
   computed: {
-    cartItens() {
-      return store.state.cartItens;
-    },
     movies() {
       return store.state.movies;
     },

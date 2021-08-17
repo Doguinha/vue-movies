@@ -6,8 +6,7 @@ var store = {
     tvs: [],
     persons: [],
     user: {},
-    pages: ["home", "shoppingcart"],
-    page: "home",
+    page: "shoppingcart",
   },
   setMovies(newValue) {
     if (this.debug) console.log("setMovies triggered with", newValue);

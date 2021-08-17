@@ -20,7 +20,7 @@ Vue.component("home-itemcard", {
             item: item,
           },
         ];
-        store.setCartItens(newCartItems);
+        setShoppingCart(newCartItems);
       } else {
         const newCartItems = this.cartItens.map((cartItem) => {
           if (cartItem.item.id === item.id) {
@@ -32,7 +32,7 @@ Vue.component("home-itemcard", {
           }
           return cartItem;
         });
-        store.setCartItens(newCartItems);
+        setShoppingCart(newCartItems);
       }
     },
   },

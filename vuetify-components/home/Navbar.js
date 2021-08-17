@@ -7,7 +7,7 @@ Vue.component("home-navbar", {
   },
   computed: {
     cartItensCount() {
-      return store.state.cartItens.length.toString();
+      return getShoppingCartCount();
     },
   },
   methods: {

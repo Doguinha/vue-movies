@@ -1,8 +1,7 @@
 Vue.component("shoppingcart-content", {
   computed: {
     cartItens() {
-      console.log(JSON.stringify(store.state.cartItens));
-      return store.state.cartItens;
+      return getShoppingCart();
     },
   },
   template: `

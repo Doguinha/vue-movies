@@ -8,12 +8,15 @@ Vue.component("shoppingcart-item", {
   data() {
     return {
       amounts: [1, 2, 3, 4, 5, 6],
-      show: false,
+      showDialog: false,
     };
   },
   methods: {
     removeItem(item) {
-      removeCartItem(item);
+      return removeCartItem(item);
+    },
+    toggleDialog() {
+      this.showDialog = !this.showDialog;
     },
   },
   template: `<v-row class='pa-2'>
@@ -37,17 +40,38 @@ Vue.component("shoppingcart-item", {
       </v-select>      
     </v-col>
     <v-col cols='2' sm='3' md='2'>
-      <v-btn color="error" class='my-sm-16 mt-16' v-on:click="show=true">
-        <v-icon>
-          mdi-delete
-        </v-icon>
-      </v-btn>
-      <vuetify-dialog 
-        message='Deseja realmente apagar?'
-        v-bind:show='true'
-        v-bind:successF='removeItem(itemCart)'
-        v-bind:failF='show=false'>
-      </vuetify-dialog>
+      <v-dialog
+        v-model="showDialog"
+        persistent
+        width="unset">
+        <template v-slot:activator>
+          <v-btn color="error" class='my-sm-16 mt-16' v-on:click="toggleDialog">
+            <v-icon>
+              mdi-delete
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title class="text-h5">
+            Deseja realmente apagar?
+          </v-card-title>          
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="toggleDialog">
+              Cancelar
+            </v-btn>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="removeItem(itemCart)">
+              Confirmar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>     
     </v-col>
   </v-row>`,
 });

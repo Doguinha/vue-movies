@@ -23,7 +23,5 @@ const removeCartItem = (itemCart) => {
   const newCartItems = getShoppingCart().filter(
     (cartItem) => cartItem.item.id !== itemCart.item.id
   );
-  console.log(JSON.stringify(itemCart.item.id));
-  console.log(JSON.stringify(newCartItems));
   setShoppingCart(newCartItems);
 };

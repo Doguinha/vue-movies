@@ -25,9 +25,6 @@ Vue.component("confirm-dialog", {
         v-model="showDialog"
         persistent
         width="unset">
-        <template v-slot:activator="{ on, attrs }">
-          <slot name='elementFireDialog'></slot>
-        </template>
         <v-card>
             <v-card-title class="text-h5">
                 {{message}}

@@ -41,20 +41,19 @@ Vue.component("shoppingcart-item", {
       </v-select>      
     </v-col>
     <v-col cols='2' sm='3' md='2'>
+      <v-btn color="primary" class='my-sm-16 mt-16' v-on:click.stop="toggleDialog">
+        <v-icon>
+          mdi-delete
+        </v-icon>
+      </v-btn>
       <confirm-dialog
         v-bind:showDialog="showDialog"
         message='Deseja realmente apagar?'
+        secondaryText='Essa operação é irreversível'
         v-on:confirmar='removeItem(itemCart)'
         v-on:cancelar='toggleDialog'
         persistent
         width="unset">
-        <template v-slot:elementFireDialog="{ on, attrs }">
-          <v-btn color="primary" class='my-sm-16 mt-16' v-on:click="toggleDialog">
-            <v-icon>
-              mdi-delete
-            </v-icon>
-          </v-btn>
-        </template>
       </confirm-dialog>     
     </v-col>
   </v-row>`,

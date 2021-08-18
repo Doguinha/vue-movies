@@ -13,6 +13,7 @@ Vue.component("shoppingcart-item", {
   },
   methods: {
     removeItem(item) {
+      console.log("chamdo");
       return removeCartItem(item);
     },
     toggleDialog() {
@@ -40,38 +41,21 @@ Vue.component("shoppingcart-item", {
       </v-select>      
     </v-col>
     <v-col cols='2' sm='3' md='2'>
-      <v-dialog
-        v-model="showDialog"
+      <confirm-dialog
+        v-bind:showDialog="showDialog"
+        message='Deseja realmente apagar?'
+        v-on:confirmar='removeItem(itemCart)'
+        v-on:cancelar='toggleDialog'
         persistent
         width="unset">
-        <template v-slot:activator>
-          <v-btn color="error" class='my-sm-16 mt-16' v-on:click="toggleDialog">
+        <template v-slot:elementFireDialog="{ on, attrs }">
+          <v-btn color="primary" class='my-sm-16 mt-16' v-on:click="toggleDialog">
             <v-icon>
               mdi-delete
             </v-icon>
           </v-btn>
         </template>
-        <v-card>
-          <v-card-title class="text-h5">
-            Deseja realmente apagar?
-          </v-card-title>          
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="green darken-1"
-              text
-              @click="toggleDialog">
-              Cancelar
-            </v-btn>
-            <v-btn
-              color="green darken-1"
-              text
-              @click="removeItem(itemCart)">
-              Confirmar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>     
+      </confirm-dialog>     
     </v-col>
   </v-row>`,
 });

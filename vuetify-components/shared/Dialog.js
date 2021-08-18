@@ -1,4 +1,12 @@
-Vue.component("vuetify-dialog", {
+Vue.component("confirm-dialog", {
+  methods: {
+    successF() {
+      return this.$emit("confirmar");
+    },
+    failF() {
+      return this.$emit("cancelar");
+    },
+  },
   props: {
     message: {
       type: String,
@@ -8,23 +16,18 @@ Vue.component("vuetify-dialog", {
       type: String,
       required: false,
     },
-    show: {
+    showDialog: {
       type: Boolean,
-      required: false,
-    },
-    successF: {
-      type: Function,
-      required: true,
-    },
-    failF: {
-      type: Function,
       required: true,
     },
   },
   template: `<v-dialog
-        v-model="dialog"
+        v-model="showDialog"
         persistent
-        max-width="290">
+        width="unset">
+        <template v-slot:activator="{ on, attrs }">
+          <slot name='elementFireDialog'></slot>
+        </template>
         <v-card>
             <v-card-title class="text-h5">
                 {{message}}

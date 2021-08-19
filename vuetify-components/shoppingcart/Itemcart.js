@@ -21,14 +21,14 @@ Vue.component("shoppingcart-item", {
     },
   },
   template: `<v-row class='pa-2'>
-    <v-col cols='3' sm='3' md='2'>
+    <v-col cols='6' sm='3' md='2'>
       <v-img        
         max-height="200"
         max-width="120"
         v-bind:src="itemCart.item.img_url">
       </v-img>
     </v-col>
-    <v-col cols='4' sm='4' md='6'>      
+    <v-col class='d-none d-sm-flex' sm='4' md='6'>      
       <div class="text-sm-h5 text-h6 py-sm-16 pt-16" v-text="itemCart.item.original_title ? itemCart.item.original_title : itemCart.item.name"></div>
     </v-col>
     <v-col cols='3' sm='2' md='2' lg='1'>
@@ -37,11 +37,12 @@ Vue.component("shoppingcart-item", {
         v-bind:items="amounts"        
         label="Qtd."
         class='py-sm-15 pt-15 text-center'
-        outlined>
+        outlined
+        dense>
       </v-select>      
     </v-col>
-    <v-col cols='2' sm='3' md='2'>
-      <v-btn color="primary" class='my-sm-16 mt-16' v-on:click.stop="toggleDialog">
+    <v-col cols='3' sm='3' md='2'>
+      <v-btn color="primary" class='my-sm-15 mt-16' v-on:click.stop="toggleDialog">
         <v-icon>
           mdi-delete
         </v-icon>

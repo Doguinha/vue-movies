@@ -94,12 +94,30 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-    <script src="./api/themoviedbapi.js"></script>
-    <script src="./services/movieservice.js"></script>
-    <script src="./components/cartcounter.js"></script>
-    <script src="./components/navbar.js"></script>
-    <script src="./components/movielist.js"></script>
-    <script src="./store/index.js"></script>
-    <script src="./App.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        vuetify: new Vuetify({
+          theme: {
+            dark: true,
+            themes: {
+              light: {
+                primary: "#3f51b5",
+                secondary: "#b0bec5",
+                accent: "#8c9eff",
+                error: "#b71c1c",
+              },
+              dark: {
+                primary: "#3f51b5",
+                secondary: "#b0bec5",
+                accent: "#8c9eff",
+                error: "#b71c1c",
+                anchor: "#8c9eff",
+              },
+            },
+          },
+        }),
+      });
+    </script>
   </body>
 </html>

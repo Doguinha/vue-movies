@@ -11,11 +11,11 @@ Vue.component("shoppingcart-navbar", {
         <v-icon class="mr-2">mdi-shopping</v-icon>
         Sacola
     </v-btn>
-    <v-btn>
+    <v-btn disabled>
         <v-icon class="mr-2">mdi-account</v-icon>
         Identificação
     </v-btn>
-    <v-btn>
+    <v-btn disabled>
         <v-icon class="mr-2">mdi-truck</v-icon>
         Entrega
     </v-btn>

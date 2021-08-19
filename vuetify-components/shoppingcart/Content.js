@@ -12,6 +12,16 @@ Vue.component("shoppingcart-content", {
               v-for='item in this.cartItens'v-bind:key='item.item.id'
               v-bind:itemCart='item'>
             </shoppingcart-item>
+            <div class="d-flex justify-end">
+              <v-btn
+                color="error"
+                class="ma-2 white--text">
+                Continuar
+                <v-icon right dark>
+                  mdi-arrow-right-circle
+                </v-icon>
+              </v-btn>
+            </div>
         </v-container>
     </v-main>
     `,

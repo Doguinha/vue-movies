@@ -13,11 +13,18 @@ Vue.component("shoppingcart-item", {
   },
   methods: {
     removeItem(item) {
-      console.log("chamdo");
-      return removeCartItem(item);
+      removeCartItem(item);
+      this.$emit("toggleSnackBar", {
+        show: true,
+        timeout: 20000,
+        message: "Item removido com sucesso!",
+      });
     },
     toggleDialog() {
       this.showDialog = !this.showDialog;
+    },
+    togglSnackBar() {
+      this.showSnackBar = !this.showSnackBar;
     },
   },
   template: `<v-row class='pa-2'>
@@ -55,7 +62,7 @@ Vue.component("shoppingcart-item", {
         v-on:cancelar='toggleDialog'
         persistent
         width="unset">
-      </confirm-dialog>     
+      </confirm-dialog>
     </v-col>
   </v-row>`,
 });

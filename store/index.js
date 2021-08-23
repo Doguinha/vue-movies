@@ -1,5 +1,5 @@
 var store = {
-  debug: false,
+  debug: true,
   state: {
     cartItens: [],
     movies: [],
@@ -7,6 +7,11 @@ var store = {
     persons: [],
     user: {},
     page: "shoppingcart",
+    notificationMessage: {
+      showSnackBar: false,
+      timeout: -1,
+      message: "",
+    },
   },
   setMovies(newValue) {
     if (this.debug) console.log("setMovies triggered with", newValue);
@@ -27,5 +32,11 @@ var store = {
   setPage(newValue) {
     if (this.debug) console.log("setPage triggered", newValue);
     this.state.page = newValue;
+  },
+  setNotificationMessage(newValue) {
+    if (this.debug) console.log("setNotificationMessage triggered", newValue);
+    this.state.notificationMessage.showSnackBar = newValue.show;
+    this.state.notificationMessage.message = newValue.message;
+    this.state.notificationMessage.timeout = newValue.timeout;
   },
 };

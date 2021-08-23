@@ -34,6 +34,11 @@ Vue.component("home-itemcard", {
         });
         setShoppingCart(newCartItems);
       }
+      store.setNotificationMessage({
+        showSnackBar: true,
+        timeout: 2000,
+        message: "Item adicionado com sucesso!",
+      });
     },
   },
   template: `

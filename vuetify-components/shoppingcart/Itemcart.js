@@ -14,9 +14,9 @@ Vue.component("shoppingcart-item", {
   methods: {
     removeItem(item) {
       removeCartItem(item);
-      this.$emit("toggleSnackBar", {
-        show: true,
-        timeout: 20000,
+      store.setNotificationMessage({
+        showSnackBar: true,
+        timeout: 2000,
         message: "Item removido com sucesso!",
       });
     },

@@ -1,27 +1,35 @@
 Vue.component("my-snackbar", {
   methods: {
     close() {
-      this.$emit("closeSnackBar");
+      store.setNotificationMessage({
+        ...store.state.setNotificationMessage,
+        showSnackBar: false,
+      });
     },
   },
-  props: {
-    message: {
-      type: String,
-      required: true,
+  computed: {
+    message() {
+      return store.state.notificationMessage.message;
     },
-    timeout: {
-      type: Number,
-      required: false,
+    timeout() {
+      return store.state.notificationMessage.timeout;
     },
     show: {
-      type: Boolean,
-      required: true,
+      get() {
+        return store.state.notificationMessage.message;
+      },
+      set(newValue) {
+        // store.setNotificationMessage({
+        //   ...store.state.notificationMessage,
+        //   showSnackBar: newValue,
+        // });
+      },
     },
   },
   template: `<v-snackbar v-model="show"
   top
   right
-  :timeout="timeout">
+  v-bind:timeout="timeout">
   {{ message }}
   <template v-slot:action="{ attrs }">
     <v-btn

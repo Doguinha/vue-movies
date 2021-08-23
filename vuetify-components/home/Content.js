@@ -9,6 +9,9 @@ Vue.component("home-content", {
     tvs() {
       return store.state.tvs;
     },
+    notificationMessage() {
+      return store.state.notificationMessage;
+    },
   },
   async mounted() {
     store.setMovies(await getTrending());
@@ -54,7 +57,7 @@ Vue.component("home-content", {
             </v-slide-group> 
           </v-col>
       </v-row>      
-    </v-container>
+    </v-container> 
   </v-main>
     `,
 });

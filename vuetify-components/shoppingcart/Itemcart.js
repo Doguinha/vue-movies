@@ -23,9 +23,6 @@ Vue.component("shoppingcart-item", {
     toggleDialog() {
       this.showDialog = !this.showDialog;
     },
-    togglSnackBar() {
-      this.showSnackBar = !this.showSnackBar;
-    },
   },
   template: `<v-row class='pa-2'>
     <v-col cols='6' sm='3' md='2'>

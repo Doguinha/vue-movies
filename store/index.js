@@ -35,7 +35,7 @@ var store = {
   },
   setNotificationMessage(newValue) {
     if (this.debug) console.log("setNotificationMessage triggered", newValue);
-    this.state.notificationMessage.showSnackBar = newValue.show;
+    this.state.notificationMessage.showSnackBar = newValue.showSnackBar;
     this.state.notificationMessage.message = newValue.message;
     this.state.notificationMessage.timeout = newValue.timeout;
   },

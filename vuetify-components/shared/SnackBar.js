@@ -2,7 +2,7 @@ Vue.component("my-snackbar", {
   methods: {
     close() {
       store.setNotificationMessage({
-        ...store.state.setNotificationMessage,
+        ...store.state.notificationMessage,
         showSnackBar: false,
       });
     },
@@ -19,10 +19,10 @@ Vue.component("my-snackbar", {
         return store.state.notificationMessage.message;
       },
       set(newValue) {
-        // store.setNotificationMessage({
-        //   ...store.state.notificationMessage,
-        //   showSnackBar: newValue,
-        // });
+        store.setNotificationMessage({
+          ...store.state.notificationMessage,
+          showSnackBar: newValue,
+        });
       },
     },
   },

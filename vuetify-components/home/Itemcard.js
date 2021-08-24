@@ -21,24 +21,18 @@ Vue.component("home-itemcard", {
           },
         ];
         setShoppingCart(newCartItems);
-      } else {
-        const newCartItems = this.cartItens.map((cartItem) => {
-          if (cartItem.item.id === item.id) {
-            const cartItemResul = {
-              ...cartItem,
-              amount: cartItem.amount + 0,
-            };
-            return cartItemResul;
-          }
-          return cartItem;
+        store.setNotificationMessage({
+          showSnackBar: true,
+          timeout: 2000,
+          message: "Item adicionado com sucesso!",
         });
-        setShoppingCart(newCartItems);
+      } else {
+        store.setNotificationMessage({
+          showSnackBar: true,
+          timeout: 2000,
+          message: "Este item já está adicionado!",
+        });
       }
-      store.setNotificationMessage({
-        showSnackBar: true,
-        timeout: 2000,
-        message: "Item adicionado com sucesso!",
-      });
     },
   },
   template: `

@@ -16,7 +16,7 @@ Vue.component("my-snackbar", {
     },
     show: {
       get() {
-        return store.state.notificationMessage.message;
+        return store.state.notificationMessage.showSnackBar;
       },
       set(newValue) {
         store.setNotificationMessage({

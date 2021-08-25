@@ -1,4 +1,9 @@
 Vue.component("shoppingcart-navbar", {
+  computed: {
+    page() {
+      return store.state.page;
+    },
+  },
   template: `<v-toolbar dark>
     <v-toolbar-title 
         class='d-none d-sm-flex' 
@@ -7,15 +12,15 @@ Vue.component("shoppingcart-navbar", {
         Vue Movies
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn>
+    <v-btn v-bind:disabled="this.page !== 'shoppingcart'">
         <v-icon class="mr-2">mdi-shopping</v-icon>
         Sacola
     </v-btn>
-    <v-btn disabled>
+    <v-btn v-bind:disabled="this.page !== 'account'">
         <v-icon class="mr-2">mdi-account</v-icon>
         Identificação
     </v-btn>
-    <v-btn disabled>
+    <v-btn v-bind:disabled="this.page !== 'shipping'">
         <v-icon class="mr-2">mdi-truck</v-icon>
         Entrega
     </v-btn>

@@ -1,13 +1,12 @@
 const getShoppingCart = () => {
-  if (store.state.cartItens.length > 0) {
-    return store.state.cartItens;
-  } else {
+  if (!store.state.cartItens.length) {
     let shop_cart = localStorage.getItem("shop_cart");
     if (shop_cart) {
-      return JSON.parse(shop_cart);
+      const shoppingCart = JSON.parse(shop_cart);
+      setShoppingCart(shoppingCart);
     }
   }
-  return [];
+  return store.state.cartItens;
 };
 
 const setShoppingCart = (shoppingCart) => {

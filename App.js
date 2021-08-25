@@ -27,6 +27,7 @@ var app = new Vue({
       <home-navbar v-if="sharedState.page === 'home'"></home-navbar>
       <home-content v-if="sharedState.page === 'home'"></home-content>
       <shoppingcart-content v-if="sharedState.page === 'shoppingcart'"></shoppingcart-content>
+      <account-content v-if="sharedState.page === 'account'"></account-content>
       <my-snackbar/>
     </v-app>`,
 });

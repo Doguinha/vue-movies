@@ -4,6 +4,19 @@ Vue.component("shoppingcart-content", {
       return getShoppingCart();
     },
   },
+  methods: {
+    goOn() {
+      if (store.state.cartItens.length > 0) {
+        store.setPage("account");
+      } else {
+        store.setNotificationMessage({
+          showSnackBar: true,
+          message: "Sua sacola está vazia! Adicione itens!",
+          timeout: 2000,
+        });
+      }
+    },
+  },
   template: `
     <v-main>
         <v-container>
@@ -14,6 +27,7 @@ Vue.component("shoppingcart-content", {
             </shoppingcart-item>
             <div class="d-flex justify-end">
               <v-btn
+                v-on:click='goOn'
                 color="error"
                 class="ma-2 white--text">
                 Continuar

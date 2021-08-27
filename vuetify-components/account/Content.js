@@ -4,6 +4,9 @@ Vue.component("account-content", {
       formValid: false,
       email: "",
       name: "",
+      password: "",
+      newEmail: "",
+      newPassword: "",
       width: window.innerWidth,
     };
   },
@@ -41,37 +44,42 @@ Vue.component("account-content", {
                         <v-card-title>Identificação</v-card-title>
                         <v-row justify='center'>
                             <v-col cols='12' sm='5'>
+                              <ValidationObserver v-slot="{ invalid }">
                                 <v-form v-model="formValid">
                                     <v-card elevation=0>
                                         <v-card-title class='text-body-1'>Quero criar uma conta</v-card-title>
                                         <v-card-text>
-                                            <validation-provider rules="secret" v-slot="{ errors }">
+                                            <validation-provider name="Nome" rules="required|" v-slot="{ errors, failed }">
                                                 <v-text-field
                                                     v-model="name"
                                                     label="Nome"
-                                                    required>
+                                                    v-bind:error="failed"
+                                                    v-bind:error-messages="errors[0]">
                                                 </v-text-field>
-                                                <span>{{ errors[0] }}</span>
                                             </validation-provider>
-                                            <validation-provider rules="required|email" v-slot="{ errors }">
+                                            <validation-provider name="E-mail" rules="required|email" v-slot="{ errors, failed }">
                                               <v-text-field
                                                   v-model="email"
                                                   label="E-mail"
-                                                  required>
+                                                  v-bind:error="failed"
+                                                  v-bind:error-messages="errors[0]">>
                                               </v-text-field>
-                                              <span>{{ errors[0] }}</span>
                                             </validation-provider>
-                                            <v-text-field
-                                                v-model="email"
-                                                label="Senha"
-                                                required>
-                                            </v-text-field>
+                                            <validation-provider name="Password" rules="required|min:3|max:8" v-slot="{ errors, failed }">
+                                              <v-text-field
+                                                  v-model="password"
+                                                  label="Senha"
+                                                  v-bind:error="failed"
+                                                  v-bind:error-messages="errors[0]">
+                                              </v-text-field>
+                                            </validation-provider>
                                         </v-card-text>
                                         <v-card-actions class='justify-end'>
-                                            <v-btn color="success" small right>Cadastrar</v-btn>
+                                            <v-btn color="success" small right type="submit" v-bind:disabled="invalid">Cadastrar</v-btn>
                                         </v-card-actions>
                                     </v-card>
                                 </v-form>
+                              </ValidationObserver>
                             </v-col>
                             <v-divider v-bind:vertical='vertical'></v-divider>
                             <v-col cols='12' sm='5'>
@@ -80,12 +88,12 @@ Vue.component("account-content", {
                                         <v-card-title class='text-body-1'>Já sou cliente</v-card-title>
                                         <v-card-text>
                                             <v-text-field
-                                                v-model="email"
+                                                v-model="newEmail"
                                                 label="E-mail"
                                                 required>
                                             </v-text-field>
                                             <v-text-field
-                                                v-model="email"
+                                                v-model="newPassword"
                                                 label="Senha"
                                                 required>
                                             </v-text-field>

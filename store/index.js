@@ -39,4 +39,8 @@ var store = {
     this.state.notificationMessage.message = newValue.message;
     this.state.notificationMessage.timeout = newValue.timeout;
   },
+  setUser(newValue) {
+    if (this.debug) console.log("setUser triggered", newValue);
+    this.state.user = newValue;
+  },
 };

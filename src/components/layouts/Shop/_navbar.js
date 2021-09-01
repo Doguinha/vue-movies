@@ -1,10 +1,10 @@
-Vue.component("shoppingcart-navbar", {
+Vue.component("shop-navbar", {
   computed: {
     page() {
       return store.state.page;
     },
   },
-  template: `<v-toolbar dark>
+  template: `<v-toolbar>
     <v-toolbar-title 
         class='d-none d-sm-flex' 
         style='cursor:pointer'

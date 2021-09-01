@@ -33,7 +33,7 @@ Vue.component("home-navbar", {
   },
   template: `
   <div>
-    <v-toolbar dark>
+    <v-toolbar>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title class='d-none d-sm-flex'>Vue Movies</v-toolbar-title>
       <v-form v-on:submit.prevent="onSearch" class='flex-grow-1 justify-center mx-sm-16 mx-2'>  

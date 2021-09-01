@@ -28,6 +28,7 @@ Vue.component("account-signin", {
             });
             this.loading = false;
             this.email = this.password = "";
+            store.setPage("shipping");
           }, 3000);
 
           // Wait until the models are updated in the UI

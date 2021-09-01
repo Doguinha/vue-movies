@@ -27,8 +27,8 @@ Vue.component("my-snackbar", {
     },
   },
   template: `<v-snackbar v-model="show"
-  top
-  right
+  bottom
+  left
   v-bind:timeout="timeout">
   {{ message }}
   <template v-slot:action="{ attrs }">

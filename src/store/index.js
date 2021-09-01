@@ -6,7 +6,7 @@ var store = {
     tvs: [],
     persons: [],
     user: {},
-    page: "account",
+    page: "home",
     notificationMessage: {
       showSnackBar: false,
       timeout: -1,

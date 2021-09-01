@@ -31,6 +31,7 @@ Vue.component("account-signup", {
             });
             this.loading = false;
             this.email = this.password = this.name = "";
+            store.setPage("shipping");
           }, 3000);
 
           // Wait until the models are updated in the UI

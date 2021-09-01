@@ -12,24 +12,29 @@ Vue.component("home-navbar", {
   methods: {
     async onSearch() {
       if (this.textSearch) {
+        let found = false;
         const moviesSearched = await getSearched(this.textSearch);
+        const tvsSearched = getSearched(this.textSearch, "tv");
+        const personSearched = await getSearched(this.textSearch, "person");
         if (moviesSearched.length > 0) {
           store.setMovies(moviesSearched);
-        } else {
+          found = true;
+        }
+        if (tvsSearched.length > 0) {
+          found = true;
+          store.setTvs(tvsSearched);
+        }
+        if (personSearched.length > 0) {
+          found = true;
+          store.setPersons(personSearched);
+        }
+        if (!found) {
           store.setNotificationMessage({
             show: true,
             message: "Nenhum resultado encontrado!",
             level: "warning",
             type: "alert",
           });
-        }
-        const tvsSearched = getSearched(this.textSearch, "tv");
-        if (tvsSearched.length > 0) {
-          store.setTvs(tvsSearched);
-        }
-        const personSearched = await getSearched(this.textSearch, "person");
-        if (personSearched.length > 0) {
-          store.setPersons(personSearched);
         }
       }
     },

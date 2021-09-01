@@ -36,6 +36,7 @@ Vue.component("my-alert", {
             v-bind:value='show'
             v-bind:type="level"
             dismissible
+            v-on:click:dismissible='close'
             dense>
             <strong>{{message}}</strong>
         </v-alert>

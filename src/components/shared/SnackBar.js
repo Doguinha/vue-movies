@@ -3,7 +3,8 @@ Vue.component("my-snackbar", {
     close() {
       store.setNotificationMessage({
         ...store.state.notificationMessage,
-        showSnackBar: false,
+        show: false,
+        type: "snackbar",
       });
     },
   },
@@ -16,12 +17,16 @@ Vue.component("my-snackbar", {
     },
     show: {
       get() {
-        return store.state.notificationMessage.showSnackBar;
+        return (
+          store.state.notificationMessage.show &&
+          store.state.notificationMessage.type === "snackbar"
+        );
       },
       set(newValue) {
         store.setNotificationMessage({
           ...store.state.notificationMessage,
-          showSnackBar: newValue,
+          show: newValue,
+          type: "snackbar",
         });
       },
     },

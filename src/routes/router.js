@@ -3,6 +3,8 @@ Vue.component("my-router", {
     <div>
       <home-layout/>
       <shop-layout/>
+      <my-snackbar/>
+      <my-alert/>
     </div>
     `,
 });

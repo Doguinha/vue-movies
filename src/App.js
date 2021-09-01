@@ -35,6 +35,5 @@ var app = new Vue({
   },
   template: `<v-app>
       <my-router></my-router>
-      <my-snackbar/>
     </v-app>`,
 });

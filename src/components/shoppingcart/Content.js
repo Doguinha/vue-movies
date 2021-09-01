@@ -10,9 +10,10 @@ Vue.component("shoppingcart-content", {
         store.setPage("account");
       } else {
         store.setNotificationMessage({
-          showSnackBar: true,
+          show: true,
           message: "Sua sacola está vazia! Adicione itens!",
           timeout: 2000,
+          type: "snackbar",
         });
       }
     },

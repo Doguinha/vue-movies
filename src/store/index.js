@@ -8,9 +8,11 @@ var store = {
     user: {},
     page: "home",
     notificationMessage: {
-      showSnackBar: false,
+      show: false,
       timeout: -1,
       message: "",
+      type: "",
+      level: "warning",
     },
   },
   setMovies(newValue) {
@@ -35,9 +37,17 @@ var store = {
   },
   setNotificationMessage(newValue) {
     if (this.debug) console.log("setNotificationMessage triggered", newValue);
-    this.state.notificationMessage.showSnackBar = newValue.showSnackBar;
+    this.state.notificationMessage.show = newValue.show;
     this.state.notificationMessage.message = newValue.message;
-    this.state.notificationMessage.timeout = newValue.timeout;
+    this.state.notificationMessage.type = newValue.type
+      ? newValue.type
+      : this.state.notificationMessage.type;
+    this.state.notificationMessage.timeout = newValue.timeout
+      ? newValue.timeout
+      : this.state.notificationMessage.timeout;
+    this.state.notificationMessage.level = newValue.level
+      ? newValue.level
+      : this.state.notificationMessage.level;
   },
   setUser(newValue) {
     if (this.debug) console.log("setUser triggered", newValue);

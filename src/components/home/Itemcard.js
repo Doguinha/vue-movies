@@ -22,15 +22,17 @@ Vue.component("home-itemcard", {
         ];
         setShoppingCart(newCartItems);
         store.setNotificationMessage({
-          showSnackBar: true,
+          show: true,
           timeout: 2000,
           message: "Item adicionado com sucesso!",
+          type: "snackbar",
         });
       } else {
         store.setNotificationMessage({
-          showSnackBar: true,
+          show: true,
           timeout: 2000,
           message: "Este item já está adicionado!",
+          type: "snackbar",
         });
       }
     },

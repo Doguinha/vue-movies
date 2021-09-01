@@ -2,7 +2,6 @@ Vue.component("home-navbar", {
   data() {
     return {
       textSearch: "",
-      notFound: false,
     };
   },
   computed: {
@@ -15,10 +14,14 @@ Vue.component("home-navbar", {
       if (this.textSearch) {
         const moviesSearched = await getSearched(this.textSearch);
         if (moviesSearched.length > 0) {
-          this.notFound = false;
           store.setMovies(moviesSearched);
         } else {
-          this.notFound = true;
+          store.setNotificationMessage({
+            show: true,
+            message: "Nenhum resultado encontrado!",
+            level: "warning",
+            type: "alert",
+          });
         }
         const tvsSearched = getSearched(this.textSearch, "tv");
         if (tvsSearched.length > 0) {
@@ -54,9 +57,6 @@ Vue.component("home-navbar", {
           </v-btn>
         </v-badge>
       </v-toolbar>
-      <vuetify-alert v-bind:show='notFound' level='warning'>
-        <strong>Nenhum resultado encontrado</strong>
-      </vuetify-alert>
     </div>
     `,
 });

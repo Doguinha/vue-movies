@@ -15,9 +15,10 @@ Vue.component("shoppingcart-item", {
     removeItem(item) {
       removeCartItem(item);
       store.setNotificationMessage({
-        showSnackBar: true,
+        show: true,
         timeout: 2000,
         message: "Item removido com sucesso!",
+        type: "snackbar",
       });
     },
     toggleDialog() {

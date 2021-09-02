@@ -2,6 +2,7 @@ Vue.component("home-navbar", {
   data() {
     return {
       textSearch: "",
+      loading: false,
     };
   },
   computed: {
@@ -11,6 +12,11 @@ Vue.component("home-navbar", {
   },
   methods: {
     async onSearch() {
+      store.setNotificationMessage({
+        ...store.state.notificationMessage,
+        show: false,
+      });
+      this.loading = true;
       if (this.textSearch) {
         let found = false;
         const moviesSearched = await getSearched(this.textSearch);
@@ -36,6 +42,7 @@ Vue.component("home-navbar", {
             type: "alert",
           });
         }
+        this.loading = false;
       }
     },
   },
@@ -48,6 +55,8 @@ Vue.component("home-navbar", {
           <v-text-field
             type="text"
             v-model='textSearch'
+            v-bind:loading='loading'
+            v-bind:disabled='loading'
             dense
             hide-details
             label="Pesquisar"

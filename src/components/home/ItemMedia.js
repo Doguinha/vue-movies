@@ -1,4 +1,4 @@
-Vue.component("home-itemcard", {
+Vue.component("home-itemmedia", {
   props: {
     item: {
       type: Object,

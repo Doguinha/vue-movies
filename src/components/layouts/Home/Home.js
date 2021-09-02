@@ -1,10 +1,5 @@
 Vue.component("home-layout", {
-  computed: {
-    page() {
-      return store.state.page;
-    },
-  },
-  template: `<div v-if="page === 'home'">
+  template: `<div>
         <home-navbar/>
         <home-content/>
     </div>`,

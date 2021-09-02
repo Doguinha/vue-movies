@@ -34,6 +34,10 @@ var app = new Vue({
     sharedState: store.state,
   },
   template: `<v-app>
+  <v-main>
+    <v-container v-bind:fluid="sharedState.page === 'home'">
       <my-router></my-router>
-    </v-app>`,
+    </v-container>
+  </v-main>
+</v-app>`,
 });

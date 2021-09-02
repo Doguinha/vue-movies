@@ -47,7 +47,6 @@ Vue.component("home-navbar", {
     },
   },
   template: `
-    <div>
       <v-toolbar>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-toolbar-title class='d-none d-sm-flex'>Vue Movies</v-toolbar-title>
@@ -71,6 +70,5 @@ Vue.component("home-navbar", {
           </v-btn>
         </v-badge>
       </v-toolbar>
-    </div>
     `,
 });

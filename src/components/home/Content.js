@@ -11,9 +11,15 @@ Vue.component("home-content", {
     },
   },
   async mounted() {
-    store.setMovies(await getTrending());
-    store.setTvs(await getTrending((mediaType = "tv")));
-    store.setPersons(await getTrending((mediaType = "person")));
+    if (store.state.movies.length === 0) {
+      store.setMovies(await getTrending());
+    }
+    if (store.state.tvs.length === 0) {
+      store.setTvs(await getTrending((mediaType = "tv")));
+    }
+    if (store.state.persons.length === 0) {
+      store.setPersons(await getTrending((mediaType = "person")));
+    }
   },
   template: `
     <div>

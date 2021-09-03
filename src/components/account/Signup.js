@@ -25,9 +25,10 @@ Vue.component("account-signup", {
               password: this.password,
             });
             store.setNotificationMessage({
-              showSnackBar: true,
+              show: true,
               message: "Nova conta criada com sucesso!",
               timeout: 4000,
+              type: "snackbar",
             });
             this.loading = false;
             this.email = this.password = this.name = "";
@@ -41,9 +42,10 @@ Vue.component("account-signup", {
         })
         .catch(() => {
           store.setNotificationMessage({
-            showSnackBar: true,
+            show: true,
             message: "Verifique os campos e tente novamente!",
             timeout: 4000,
+            type: "alert",
           });
           this.loading = false;
         });
@@ -59,6 +61,7 @@ Vue.component("account-signup", {
                         v-model="name"
                         label="Nome"
                         v-bind:error="failed"
+                        v-bind:disabled="loading"
                         v-bind:error-messages="errors[0]">
                     </v-text-field>
                 </validation-provider>
@@ -67,6 +70,7 @@ Vue.component("account-signup", {
                       v-model="email"
                       label="E-mail"
                       v-bind:error="failed"
+                      v-bind:disabled="loading"
                       v-bind:error-messages="errors[0]">
                   </v-text-field>
                 </validation-provider>
@@ -76,6 +80,7 @@ Vue.component("account-signup", {
                       v-bind:type="showPassword ? 'text' : 'password'"
                       label="Senha"
                       v-bind:error="failed"
+                      v-bind:disabled="loading"
                       v-bind:error-messages="errors[0]"
                       v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                       v-on:click:append="showPassword = !showPassword">
@@ -85,6 +90,7 @@ Vue.component("account-signup", {
                   <v-text-field
                       v-model="confirmedPassword"
                       v-bind:type="showPassword ? 'text' : 'password'"
+                      v-bind:disabled="loading"
                       label="Confirmar Senha"
                       v-bind:error="failed"
                       v-bind:error-messages="errors[0]">

@@ -22,9 +22,10 @@ Vue.component("account-signin", {
               password: this.password,
             });
             store.setNotificationMessage({
-              showSnackBar: true,
+              show: true,
               message: "Logado com sucesso!",
               timeout: 4000,
+              type: "snackbar",
             });
             this.loading = false;
             this.email = this.password = "";
@@ -41,6 +42,7 @@ Vue.component("account-signin", {
             showSnackBar: true,
             message: "Verifique os campos e tente novamente!",
             timeout: 4000,
+            type: "alert",
           });
           this.loading = false;
         });
@@ -55,6 +57,7 @@ Vue.component("account-signin", {
                     <v-text-field
                         v-model="email"
                         label="E-mail"
+                        v-bind:disabled="loading"
                         v-bind:error="failed"
                         v-bind:error-messages="errors[0]">
                     </v-text-field>
@@ -65,6 +68,7 @@ Vue.component("account-signin", {
                         label="Senha"
                         v-bind:type="showPassword ? 'text' : 'password'"
                         v-bind:error="failed"
+                        v-bind:disabled="loading"
                         v-bind:error-messages="errors[0]"
                         v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                         v-on:click:append="showPassword = !showPassword">

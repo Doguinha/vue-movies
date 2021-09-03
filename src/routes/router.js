@@ -11,8 +11,6 @@ Vue.component("my-router", {
     <div>
         <home-layout v-if="page === 'home'"/>
         <shop-layout v-else-if='shopArea'/>
-        <my-snackbar/>
-        <my-alert/>
     </div>
     `,
 });

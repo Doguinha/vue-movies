@@ -20,6 +20,9 @@ Vue.component("shoppingcart-item", {
         message: "Item removido com sucesso!",
         type: "snackbar",
       });
+      if (store.state.cartItens.length === 0) {
+        store.setPage("home");
+      }
     },
     toggleDialog() {
       this.showDialog = !this.showDialog;

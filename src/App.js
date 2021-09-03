@@ -37,6 +37,8 @@ var app = new Vue({
   <v-main>
     <v-container v-bind:fluid="sharedState.page === 'home'">
       <my-router></my-router>
+      <my-snackbar/>
+      <my-alert/>
     </v-container>
   </v-main>
 </v-app>`,

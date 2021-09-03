@@ -4,9 +4,14 @@ Vue.component("shoppingcart-content", {
       return getShoppingCart();
     },
   },
+  beforeCreate() {
+    if (store.state.cartItens.length === 0) {
+      store.setPage("home");
+    }
+  },
   methods: {
     goOn() {
-      if (store.state.cartItens.length > 0) {
+      if (this.cartItens.length > 0) {
         store.setPage("account");
       } else {
         store.setNotificationMessage({

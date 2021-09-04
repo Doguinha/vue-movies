@@ -26,9 +26,6 @@ Vue.component("home-content", {
       <home-mediatype v-bind:medias='movies'>
         <strong>Movies</strong>
       </home-mediatype>
-      <home-mediatype v-bind:medias='movies'>
-        <strong>Tv Series</strong>
-      </home-mediatype>
       <home-mediatype v-bind:medias='tvs'>
         <strong>Tv Series</strong>
       </home-mediatype>

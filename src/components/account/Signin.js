@@ -1,8 +1,19 @@
 Vue.component("account-signin", {
   data() {
     return {
-      email: "",
-      password: "",
+      fieldEmail: {
+        type: "email",
+        value: "",
+        rules: "required|email",
+        label: "E-mail",
+      },
+      fieldPassword: {
+        type: "password",
+        value: "",
+        rules: "required|min:3|max:8",
+        label: "Senha",
+        icon: "mdi-eye-off",
+      },
       loading: false,
       showPassword: false,
     };
@@ -18,8 +29,8 @@ Vue.component("account-signin", {
           }
           setTimeout(() => {
             store.setUser({
-              email: this.email,
-              password: this.password,
+              email: this.fieldEmail.value,
+              password: this.fieldPassword.value,
             });
             store.setNotificationMessage({
               show: true,
@@ -28,7 +39,7 @@ Vue.component("account-signin", {
               type: "snackbar",
             });
             this.loading = false;
-            this.email = this.password = "";
+            this.fieldEmail.value = this.fieldPassword.value = "";
             store.setPage("shipping");
           }, 3000);
 
@@ -39,7 +50,7 @@ Vue.component("account-signin", {
         })
         .catch(() => {
           store.setNotificationMessage({
-            showSnackBar: true,
+            show: true,
             message: "Verifique os campos e tente novamente!",
             timeout: 4000,
             type: "alert",
@@ -47,33 +58,28 @@ Vue.component("account-signin", {
           this.loading = false;
         });
     },
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+      if (this.showPassword) {
+        this.fieldPassword.icon = "mdi-eye";
+        this.fieldPassword.type = "text";
+      } else {
+        this.fieldPassword.icon = "mdi-eye-off";
+        this.fieldPassword.type = "password";
+      }
+    },
   },
   template: `<ValidationObserver v-slot="{ invalid, handleSubmit  }" ref="formSignin">
     <v-form v-on:submit.prevent='handleSubmit(signin)'>
         <v-card elevation=0 v-bind:loading='loading'>
             <v-card-title class='text-body-1'>Já sou cliente</v-card-title>
             <v-card-text>
-                <validation-provider name="E-mail" rules="required|email" v-slot="{ errors, failed }">
-                    <v-text-field
-                        v-model="email"
-                        label="E-mail"
-                        v-bind:disabled="loading"
-                        v-bind:error="failed"
-                        v-bind:error-messages="errors[0]">
-                    </v-text-field>
+                <my-text-field v-bind:field="fieldEmail"
+                  v-bind:disabled="loading"/>
                 </validation-provider>
-                <validation-provider name="Senha" rules="required|min:3|max:8" v-slot="{ errors, failed }">
-                    <v-text-field
-                        v-model="password"
-                        label="Senha"
-                        v-bind:type="showPassword ? 'text' : 'password'"
-                        v-bind:error="failed"
-                        v-bind:disabled="loading"
-                        v-bind:error-messages="errors[0]"
-                        v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                        v-on:click:append="showPassword = !showPassword">
-                    </v-text-field>
-                </validation-provider>
+                <my-text-field v-bind:field="fieldPassword"
+                  v-bind:disabled="loading"
+                  v-on:appendIconClicked="togglePassword"/>
             </v-card-text>
             <v-card-actions class='justify-end'>
                 <v-btn color="success" small right type="submit" v-bind:disabled="(loading || invalid)">Logar</v-btn>

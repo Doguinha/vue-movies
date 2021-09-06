@@ -14,11 +14,11 @@ Vue.component("my-text-field", {
       return this.$emit("appendIconClicked");
     },
     appendIconClickedF() {
-      console.log("qweqweqw");
       return this.$emit("appendIconClicked");
     },
   },
-  template: `<validation-provider 
+  template: `<validation-provider
+        v-bind:vid="field.vid"
         v-bind:name="field.label" 
         v-bind:rules="field.rules" 
         v-slot="{ errors, failed }">

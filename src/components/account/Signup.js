@@ -1,10 +1,32 @@
 Vue.component("account-signup", {
   data() {
     return {
-      name: "",
-      email: "",
-      password: "",
-      confirmedPassword: "",
+      fieldName: {
+        type: "text",
+        value: "",
+        rules: "required|alpha_spaces|min:8|max:30",
+        label: "Nome",
+      },
+      fieldEmail: {
+        type: "email",
+        value: "",
+        rules: "required|email",
+        label: "E-mail",
+      },
+      fieldPassword: {
+        type: "password",
+        value: "",
+        rules: "required|min:3|max:8|confirmed:confirmPassword",
+        label: "Senha",
+        icon: "mdi-eye-off",
+      },
+      fieldConfirmPassword: {
+        type: "password",
+        value: "",
+        rules: "required|min:3|max:8",
+        label: "Confirmar Senha",
+        vid: "confirmPassword",
+      },
       loading: false,
       showPassword: false,
     };
@@ -20,9 +42,9 @@ Vue.component("account-signup", {
           }
           setTimeout(() => {
             store.setUser({
-              name: this.name,
-              email: this.email,
-              password: this.password,
+              name: this.fieldName.value,
+              email: this.fieldEmail.value,
+              password: this.fieldPassword.value,
             });
             store.setNotificationMessage({
               show: true,
@@ -31,7 +53,11 @@ Vue.component("account-signup", {
               type: "snackbar",
             });
             this.loading = false;
-            this.email = this.password = this.name = "";
+            this.fieldEmail.value =
+              this.fieldPassword.value =
+              this.fieldConfirmPassword.value =
+              this.fieldName.value =
+                "";
             store.setPage("shipping");
           }, 3000);
 
@@ -50,52 +76,33 @@ Vue.component("account-signup", {
           this.loading = false;
         });
     },
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+      if (this.showPassword) {
+        this.fieldPassword.icon = "mdi-eye";
+        this.fieldPassword.type = "text";
+        this.fieldConfirmPassword.type = "text";
+      } else {
+        this.fieldPassword.icon = "mdi-eye-off";
+        this.fieldPassword.type = "password";
+        this.fieldConfirmPassword.type = "password";
+      }
+    },
   },
   template: `<ValidationObserver v-slot="{ invalid, handleSubmit  }" ref="formSignup">
     <v-form v-on:submit.prevent='handleSubmit(newAccount)'>
         <v-card elevation=0 v-bind:loading='loading'>
             <v-card-title class='text-body-1'>Quero criar uma conta</v-card-title>
             <v-card-text>
-                <validation-provider name="Nome" rules="required|alpha_spaces" v-slot="{ errors, failed }">
-                    <v-text-field
-                        v-model="name"
-                        label="Nome"
-                        v-bind:error="failed"
-                        v-bind:disabled="loading"
-                        v-bind:error-messages="errors[0]">
-                    </v-text-field>
-                </validation-provider>
-                <validation-provider name="E-mail" rules="required|email" v-slot="{ errors, failed }">
-                  <v-text-field
-                      v-model="email"
-                      label="E-mail"
-                      v-bind:error="failed"
-                      v-bind:disabled="loading"
-                      v-bind:error-messages="errors[0]">
-                  </v-text-field>
-                </validation-provider>
-                <validation-provider name="Senha" rules="required|min:3|max:8|confirmed:confirmPassword" v-slot="{ errors, failed }">
-                  <v-text-field
-                      v-model="password"
-                      v-bind:type="showPassword ? 'text' : 'password'"
-                      label="Senha"
-                      v-bind:error="failed"
-                      v-bind:disabled="loading"
-                      v-bind:error-messages="errors[0]"
-                      v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                      v-on:click:append="showPassword = !showPassword">
-                  </v-text-field>
-                </validation-provider>
-                <validation-provider vid="confirmPassword" name="Confirmar Senha" v-slot="{ errors, failed }">
-                  <v-text-field
-                      v-model="confirmedPassword"
-                      v-bind:type="showPassword ? 'text' : 'password'"
-                      v-bind:disabled="loading"
-                      label="Confirmar Senha"
-                      v-bind:error="failed"
-                      v-bind:error-messages="errors[0]">
-                  </v-text-field>
-                </validation-provider>
+              <my-text-field v-bind:field="fieldName"
+                v-bind:disabled="loading"/>
+              <my-text-field v-bind:field="fieldEmail"
+                v-bind:disabled="loading"/>
+              <my-text-field v-bind:field="fieldPassword"
+                v-bind:disabled="loading"
+                v-on:appendIconClicked="togglePassword"/>
+              <my-text-field v-bind:field="fieldConfirmPassword"
+                v-bind:disabled="loading"/>
             </v-card-text>
             <v-card-actions class='justify-end'>
                 <v-btn color="success" small right type="submit" v-bind:disabled="(loading || invalid)">Cadastrar</v-btn>

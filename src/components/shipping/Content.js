@@ -1,8 +1,4 @@
 Vue.component("shipping-content", {
-  beforeCreate() {
-    if (!store.state.user) {
-      store.setPage("shoppingcart");
-    }
-  },
+  mixins: [autenticatedPageMixin],
   template: `<h1>Shipping</h1>`,
 });

@@ -1,4 +1,10 @@
 Vue.component("account-content", {
+  mixins: [isUserAutenticatedMixin],
+  mounted() {
+    if (this.isUserAuthenticated()) {
+      store.setPage("shipping");
+    }
+  },
   template: `
     <v-card class='pa-0'>
         <v-card-text>

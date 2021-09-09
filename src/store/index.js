@@ -5,8 +5,8 @@ var store = {
     movies: [],
     tvs: [],
     persons: [],
-    user: {},
-    page: "shipping",
+    user: { name: "Douglas" },
+    page: "home",
     notificationMessage: {
       show: false,
       timeout: -1,

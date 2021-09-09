@@ -28,8 +28,7 @@ Vue.component("shoppingcart-item", {
   template: `<v-row class='pa-2'>
     <v-col cols='6' sm='3' md='2'>
       <v-img        
-        max-height="200"
-        max-width="120"
+        max-width="101"
         v-bind:src="itemCart.item.img_url">
       </v-img>
     </v-col>

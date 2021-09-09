@@ -1,7 +1,15 @@
 var isUserAutenticatedMixin = {
   methods: {
     isUserAuthenticated() {
-      return store.state.user && Object.keys(store.state.user).length !== 0;
+      return this.user && Object.keys(this.user).length !== 0;
+    },
+    logout() {
+      store.state.user = {};
+    },
+  },
+  computed: {
+    user() {
+      return store.state.user;
     },
   },
 };

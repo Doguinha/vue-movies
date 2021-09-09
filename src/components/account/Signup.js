@@ -4,7 +4,7 @@ Vue.component("account-signup", {
       fieldName: {
         type: "text",
         value: "",
-        rules: "required|alpha_spaces|min:8|max:30",
+        rules: "required|alpha_spaces|min:5|max:30",
         label: "Nome",
       },
       fieldEmail: {

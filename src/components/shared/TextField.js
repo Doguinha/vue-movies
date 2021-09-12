@@ -9,14 +9,6 @@ Vue.component("my-text-field", {
       required: true,
     },
   },
-  methods: {
-    iconClickedF() {
-      return this.$emit("appendIconClicked");
-    },
-    appendIconClickedF() {
-      return this.$emit("appendIconClicked");
-    },
-  },
   template: `<validation-provider
         v-bind:vid="field.vid"
         v-bind:name="field.label" 
@@ -30,7 +22,7 @@ Vue.component("my-text-field", {
             v-bind:disabled="disabled"
             v-bind:error-messages="errors[0]"
             v-bind:append-icon="field.icon"
-            v-on:click:append="iconClickedF">
+            v-on:click:append="$emit('appendIconClicked')">
         </v-text-field>
-    </validation-provider v-on:iconClicked="appendIconClickedF">`,
+    </validation-provider>`,
 });

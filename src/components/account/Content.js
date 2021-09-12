@@ -6,6 +6,7 @@ Vue.component("account-content", {
     }
   },
   template: `
+<shop-layout
     <v-card class='pa-0'>
         <v-card-text>
             <v-container>
@@ -21,5 +22,6 @@ Vue.component("account-content", {
                 </v-row>
             </v-container>
         </v-card-text>
-    </v-card>`,
+    </v-card>
+</shop-layout>`,
 });

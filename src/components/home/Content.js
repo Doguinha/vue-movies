@@ -22,7 +22,7 @@ Vue.component("home-content", {
     }
   },
   template: `
-    <div>
+    <home-layout>
       <home-mediatype v-bind:medias='movies'>
         <strong>Movies</strong>
       </home-mediatype>
@@ -32,6 +32,6 @@ Vue.component("home-content", {
       <home-mediatype v-bind:medias='persons'>
         <strong>Actors</strong>
       </home-mediatype>
-    </div>
+    </home-layout>
     `,
 });

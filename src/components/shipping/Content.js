@@ -1,4 +1,6 @@
 Vue.component("shipping-content", {
   mixins: [autenticatedPageMixin],
-  template: `<h1>Shipping</h1>`,
+  template: `<shop-layout>
+    <h1>Shipping</h1>
+  </shop-layout>`,
 });

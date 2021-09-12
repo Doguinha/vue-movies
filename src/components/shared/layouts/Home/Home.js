@@ -7,6 +7,6 @@ Vue.component("home-layout", {
   template: `<div>
         <home-navbar v-on:toggleMenu='toggleMenu'/>
         <home-sidebar ref="sidebar"/>
-        <home-content/>
+        <slot></slot>
     </div>`,
 });

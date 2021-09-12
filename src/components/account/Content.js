@@ -6,7 +6,7 @@ Vue.component("account-content", {
     }
   },
   template: `
-<shop-layout
+<shop-layout>
     <v-card class='pa-0'>
         <v-card-text>
             <v-container>

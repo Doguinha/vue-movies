@@ -73,8 +73,8 @@ Vue.component("home-navbar", {
             </v-form>
           </v-col>
           <v-col cols='2'>
-            <div class='d-flex justify-space-between'>
-              <home-usermenu/>
+            <div class='d-flex justify-end'>
+              <home-usermenu class='pr-2'/>
               <v-badge overlap bottom offset-x="30" offset-y="18" v-bind:content="cartItensCount">
                 <v-btn v-on:click="this.store.setPage('shoppingcart')">
                   <v-icon>mdi-shopping</v-icon>

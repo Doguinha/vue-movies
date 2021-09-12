@@ -5,7 +5,7 @@ var store = {
     movies: [],
     tvs: [],
     persons: [],
-    user: { name: "Douglas" },
+    user: {},
     page: "home",
     notificationMessage: {
       show: false,

@@ -27,13 +27,13 @@ Vue.component("home-usermenu", {
       </v-list-item>
     </v-list>
   </v-menu>
-  <div class='mx-4' v-else>
+  <span v-else>
     <p class='text-caption ma-0'>
       Bem vindo ;)
     </p>
     <v-btn text plain x-small class='pa-0' v-on:click="this.store.setPage('account')">
       Entre ou cadastre-se
     </v-btn>
-  </div>
+  </span>
 </span>`,
 });

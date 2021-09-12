@@ -7,9 +7,9 @@ Vue.component("my-router", {
   template: `
     <div>
         <home-content v-if="page === 'home'"/>
-        <shoppingcart-content v-if="page === 'shoppingcart'"/>
-        <account-content v-if="page === 'account'"/>
-        <shipping-content v-if="page === 'shipping'"/>
+        <shoppingcart-content v-else-if="page === 'shoppingcart'"/>
+        <account-content v-else-if="page === 'account'"/>
+        <shipping-content v-else-if="page === 'shipping'"/>
     </div>
     `,
 });

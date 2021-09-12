@@ -42,36 +42,47 @@ Vue.component("home-navbar", {
             type: "alert",
           });
         }
-        this.loading = false;
       }
+      this.loading = false;
     },
   },
-  template: `<span>
-      <v-toolbar>
-        <v-app-bar-nav-icon v-on:click='$refs.sidebar.show = !$refs.sidebar.show'></v-app-bar-nav-icon>
-        <v-toolbar-title class='d-none d-sm-flex'>Vue Movies</v-toolbar-title>
-        <v-form v-on:submit.prevent="onSearch" class='flex-grow-1 justify-center ml-sm-12 mr-sm-4 mx-2'>  
-          <v-text-field
-            type="text"
-            v-model='textSearch'
-            v-bind:loading='loading'
-            v-bind:disabled='loading'
-            dense
-            hide-details
-            label="Pesquisar"
-            solo-inverted
-            append-icon="mdi-magnify"
-            v-on:click:append="onSearch">
-          </v-text-field>
-        </v-form>
-        <home-usermenu/>
-        <v-badge overlap bottom offset-x="30" offset-y="18" v-bind:content="cartItensCount">
-          <v-btn v-on:click="this.store.setPage('shoppingcart')">
-            <v-icon>mdi-shopping</v-icon>
-          </v-btn>
-        </v-badge>
+  template: `<v-toolbar>
+        <v-row align='center' justify='space-between'>
+          <v-col cols='2'>
+            <v-icon 
+              v-on:click="$emit('toggleMenu')" 
+              class='mt-n1'>
+              mdi-menu
+            </v-icon>
+            <h1 class='d-inline-flex text-h6 pl-2'>Vue Movies</h1>
+          </v-col>
+          <v-col cols='6'>
+            <v-form v-on:submit.prevent="onSearch">  
+              <v-text-field
+                type="text"
+                v-model='textSearch'
+                v-bind:loading='loading'
+                v-bind:disabled='loading'
+                dense
+                hide-details
+                label="Pesquisar"
+                solo-inverted
+                append-icon="mdi-magnify"
+                v-on:click:append="onSearch">
+              </v-text-field>
+            </v-form>
+          </v-col>
+          <v-col cols='2'>
+            <div class='d-flex justify-space-between'>
+              <home-usermenu/>
+              <v-badge overlap bottom offset-x="30" offset-y="18" v-bind:content="cartItensCount">
+                <v-btn v-on:click="this.store.setPage('shoppingcart')">
+                  <v-icon>mdi-shopping</v-icon>
+                </v-btn>
+              </v-badge>
+            </div>  
+          </v-col>
+        </v-row>
       </v-toolbar>
-      <home-sidebar ref="sidebar"/>
-    </span>
     `,
 });

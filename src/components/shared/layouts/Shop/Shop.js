@@ -5,7 +5,7 @@ Vue.component("shop-layout", {
     },
   },
   template: `<v-container>
-  <shop-navbar></shop-navbar>
-  <slot></slot>
-</container>`,
+    <shop-navbar></shop-navbar>
+    <slot></slot>
+  </container>`,
 });

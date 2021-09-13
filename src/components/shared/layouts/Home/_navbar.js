@@ -49,8 +49,7 @@ Vue.component("home-navbar", {
   template: `<v-toolbar>
         <v-row align='center' justify='space-between'>
           <v-col cols='2'>
-            <v-icon 
-              v-on:click="$emit('toggleMenu')" 
+            <v-icon v-on:click="$emit('toggleMenu')" 
               class='mt-n1'>
               mdi-menu
             </v-icon>

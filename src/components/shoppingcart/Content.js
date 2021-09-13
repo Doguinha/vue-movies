@@ -22,12 +22,12 @@ Vue.component("shoppingcart-content", {
       <shop-layout>
           <div v-if='this.cartItens.length > 0'>
             <shoppingcart-item 
-              v-for='item in this.cartItens'v-bind:key='item.item.id'
+              v-for='item in this.cartItens'
+              v-bind:key='item.item.id'
               v-bind:itemCart='item'>
             </shoppingcart-item>
             <div class="d-flex justify-end">
-              <v-btn
-                v-on:click='goOn'
+              <v-btn v-on:click='goOn'
                 color="error"
                 class="ma-2 white--text">
                 Continuar

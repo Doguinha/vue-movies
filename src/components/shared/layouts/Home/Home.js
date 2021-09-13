@@ -4,9 +4,9 @@ Vue.component("home-layout", {
       this.$refs.sidebar.show = !this.$refs.sidebar.show;
     },
   },
-  template: `<div>
+  template: `<v-container fluid>
         <home-navbar v-on:toggleMenu='toggleMenu'/>
         <home-sidebar ref="sidebar"/>
         <slot></slot>
-    </div>`,
+    </v-container>`,
 });

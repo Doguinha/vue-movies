@@ -4,8 +4,8 @@ Vue.component("shop-layout", {
       return store.state.page;
     },
   },
-  template: `<div>
+  template: `<v-container>
   <shop-navbar></shop-navbar>
   <slot></slot>
-</div>`,
+</container>`,
 });

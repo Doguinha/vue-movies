@@ -12,11 +12,11 @@ Vue.component("account-content", {
             <v-container>
                 <v-card-title>Identificação</v-card-title>
                 <v-row justify='center'>
-                    <v-col cols='12' sm='5'>
+                    <v-col sm='6'>
                         <account-signup></account-signup>
                     </v-col>
                     <v-divider vertical class='d-none d-sm-flex'></v-divider>
-                    <v-col cols='12' sm='5'>
+                    <v-col sm='6'>
                         <account-signin></account-signin>
                     </v-col>
                 </v-row>

@@ -5,7 +5,11 @@ Vue.component("shop-layout", {
     },
   },
   template: `<v-container>
-    <shop-navbar></shop-navbar>
-    <slot></slot>
-  </container>`,
+    <v-row justify='center'>
+      <v-col lg='10'>
+        <shop-navbar></shop-navbar>
+        <slot></slot>
+      </v-col>
+    </v-row>
+  </v-container>`,
 });

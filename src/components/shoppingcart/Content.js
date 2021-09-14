@@ -20,7 +20,7 @@ Vue.component("shoppingcart-content", {
   },
   template: `
       <shop-layout>
-          <div v-if='this.cartItens.length > 0'>
+          <span v-if='this.cartItens.length > 0'>
             <shoppingcart-item 
               v-for='item in this.cartItens'
               v-bind:key='item.item.id'
@@ -36,7 +36,7 @@ Vue.component("shoppingcart-content", {
                 </v-icon>
               </v-btn>
             </div>
-          </div>
+          </span>
           <span v-else>Sua sacola está vazia</span>
       </shop-layout>
     `,

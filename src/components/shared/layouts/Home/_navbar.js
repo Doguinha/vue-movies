@@ -48,12 +48,13 @@ Vue.component("home-navbar", {
   },
   template: `<v-toolbar>
         <v-row align='center' justify='space-between'>
-          <v-col cols='2'>
-            <v-icon v-on:click="$emit('toggleMenu')" 
-              class='mt-n1'>
-              mdi-menu
-            </v-icon>
-            <h1 class='d-inline-flex text-h6 pl-2'>Vue Movies</h1>
+          <v-col cols='3'>
+            <div class='d-flex'>
+              <v-icon v-on:click="$emit('toggleMenu')">
+                mdi-menu
+              </v-icon>
+              <h1 class='text-h6 pl-2'>Vue Movies</h1>
+            </div>
           </v-col>
           <v-col cols='6'>
             <v-form v-on:submit.prevent="onSearch">  
@@ -71,7 +72,7 @@ Vue.component("home-navbar", {
               </v-text-field>
             </v-form>
           </v-col>
-          <v-col cols='2'>
+          <v-col cols='3'>
             <div class='d-flex justify-end'>
               <home-usermenu class='pr-2'/>
               <v-badge overlap bottom offset-x="30" offset-y="18" v-bind:content="cartItensCount">
